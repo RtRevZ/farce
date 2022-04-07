@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // The velocity along the y axis is 10 units per second.  If the GameObject starts at (0,0,0) then
 // it will reach (0,100,0) units after 10 seconds.
@@ -35,6 +36,9 @@ public class partyswitcher : MonoBehaviour
 
         mcamera.transform.SetParent(party[leader].transform, false);
 
+
+        mcamera.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = oob.GetComponent<oOb>().party[leader].name;
+
         party[leader].AddComponent<teleport>();
     }
 
@@ -60,10 +64,16 @@ public class partyswitcher : MonoBehaviour
 
             mcamera.transform.SetParent(party[leader].transform, false);
 
+            mcamera.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = oob.GetComponent<oOb>().party[leader].name;
+
             Destroy(party[lastLeader].GetComponent<teleport>());
 
-            gameObject.GetComponent<CONTROL>().leader = party[leader];
+
             party[leader].AddComponent<teleport>();
+
+
+            gameObject.GetComponent<CONTROL>().leader = party[leader];
+
 
             party[lastLeader].transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "MParty";
             party[lastLeader].transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "MParty";

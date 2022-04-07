@@ -15,11 +15,11 @@ C:/Users/Rt Rev Cameron Zingg/Farce! (A Platformer with sequences of Turn-Based 
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-50551
+53586
 Successfully changed project path to: C:/Users/Rt Rev Cameron Zingg/Farce! (A Platformer with sequences of Turn-Based Combat)
 C:/Users/Rt Rev Cameron Zingg/Farce! (A Platformer with sequences of Turn-Based Combat)
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 926.14 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 514.89 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.19f1 (68f137dc9bbe)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.19f1/Editor/Data/Resources/UnitySubsystems
@@ -35,5 +35,5 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.19f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.19f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.19f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56488
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56236
 Begin MonoManager ReloadAssembly

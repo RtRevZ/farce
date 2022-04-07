@@ -42,6 +42,7 @@ public class follow : MonoBehaviour
             }
             mFollower.transform.localScale = new Vector3(-1, 1, 1);
         }
+
         mrb.velocity = mmovement;
 
 
@@ -62,10 +63,7 @@ public class follow : MonoBehaviour
             }
             rFollower.transform.localScale = new Vector3(-1, 1, 1);
         }
+
         rrb.velocity = rmovement;
-
-
-
-
     }
 }

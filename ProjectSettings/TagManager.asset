@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Digby
-  - Hero
-  - Samuel
+  - PL1
+  - PL2
+  - PL3
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: FParty
     uniqueID: 1372898083
+    locked: 0
+  - name: UI
+    uniqueID: 3158291993
     locked: 0

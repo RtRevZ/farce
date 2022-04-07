@@ -25,6 +25,7 @@ public class CONTROL : MonoBehaviour
 
         Vector3 movement = rb.velocity;
 
+
         if (jump && j != 0)
         {
             movement[1] = 7.0f;
@@ -36,12 +37,13 @@ public class CONTROL : MonoBehaviour
             j = 1;
         }
 
-
         movement[0] = 2.5f * Input.GetAxis("Horizontal");
+
 
         if (movement[0] < 0)
         {
             leader.transform.localScale = new Vector3(-1,1,1);
+            leader.transform.Find("Main Camera").transform.localScale = new Vector3(1,1,1);
         }
 
         if (movement[0] >  0)
