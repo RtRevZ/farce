@@ -56,14 +56,13 @@ public class box : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (first)
+        if (col.gameObject.name == "Ground" || col.gameObject.name == "Box")
         {
-            first = false;
             gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         }
         if (type != 2 && col.transform == oob_comp.PARTY.GetComponent<Party>().party[oob_comp.PARTY.GetComponent<Party>().leader].transform && oob_comp.party[oob_comp.PARTY.GetComponent<Party>().leader].boxact == 0)
         {
-            gameObject.GetComponent<Rigidbody2D>().constraints = ~RigidbodyConstraints2D.FreezePositionX & RigidbodyConstraints2D.FreezeAll;
+            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         }
     }
 
@@ -74,7 +73,7 @@ public class box : MonoBehaviour
             if(type == 0 || type == 1)
             {
                 click = 1;
-                gameObject.GetComponent<Rigidbody2D>().constraints = ~RigidbodyConstraints2D.FreezePositionX & RigidbodyConstraints2D.FreezeAll;
+                gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             }
         }
 
@@ -92,8 +91,14 @@ public class box : MonoBehaviour
     void OnMouseUp()
     {
 
-        gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-
+        if (click != 2)
+        {
+            gameObject.GetComponent<Rigidbody2D>().constraints = ~RigidbodyConstraints2D.FreezePositionY & RigidbodyConstraints2D.FreezeAll;
+        }
+        if (click == 2) 
+        {
+            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        }
         click = 0;
     }
 
@@ -102,7 +107,7 @@ public class box : MonoBehaviour
     {
         if (type != 2 && col.transform == oob_comp.PARTY.GetComponent<Party>().party[oob_comp.PARTY.GetComponent<Party>().leader].transform && oob_comp.party[oob_comp.PARTY.GetComponent<Party>().leader].boxact == 0)
         {
-            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            gameObject.GetComponent<Rigidbody2D>().constraints = ~RigidbodyConstraints2D.FreezePositionY & RigidbodyConstraints2D.FreezeAll;
         }
     }
 

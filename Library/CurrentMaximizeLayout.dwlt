@@ -26,7 +26,7 @@ MonoBehaviour:
   m_MinSize: {x: 711, y: 271}
   m_MaxSize: {x: 22006, y: 10021}
   vertical: 0
-  controlID: 7001
+  controlID: 17904
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 101, y: 242}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 6976
+  controlID: 17905
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -205,9 +205,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 7.366217, y: 2.8401563, z: -2.007552}
+    m_Target: {x: 15.555769, y: 1.4624932, z: -3.4562426}
     speed: 2
-    m_Value: {x: 7.366217, y: 2.8401563, z: -2.007552}
+    m_Value: {x: 15.555769, y: 1.4624932, z: -3.4562426}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -258,9 +258,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 9.963903
+    m_Target: 21.923532
     speed: 2
-    m_Value: 9.963903
+    m_Value: 21.923532
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -487,7 +487,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 0ee1ffff58e2ffffa8e3ffff98e5ffff40e7ffff26ecffff38fbffff
+      m_ExpandedIDs: 6ab5ffff38b7ffff6eb8ffffb6bfffff8ac7fffff4c9ffff14d0ffff82d1ffffc6d2ffff3ad5ffff0ee1ffff58e2ffffa8e3ffff98e5ffff40e7ffff26ecffff38fbffffce8500007a860000b0a50000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -575,13 +575,13 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Areas/CONTROL
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Areas/CONTROL
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\camer\Farce! (A Platformer with sequences of Turn-Based
     Combat)
@@ -589,8 +589,8 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 2e440000
-    m_LastClickedID: 17454
+    m_SelectedIDs: 1a440000
+    m_LastClickedID: 17434
     m_ExpandedIDs: 000000000444000006440000084400000a4400000c4400000e440000104400001244000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -644,8 +644,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 500e0000
-    m_LastClickedInstanceID: 3664
+    m_SelectedInstanceIDs: 32440000
+    m_LastClickedInstanceID: 17458
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: f86700008066000032b0ffff9c420000ae430000
     m_RenameOverlay:
@@ -733,7 +733,7 @@ MonoBehaviour:
     m_CachedPref: -431
     m_ControlHash: 1412526313
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 3664
+  m_LastInspectedObjectInstanceID: 17458
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_LockTracker:
@@ -766,4 +766,4 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -5214
+  m_LastSelectedObjectID: 54210
