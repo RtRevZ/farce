@@ -1,0 +1,971 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<fauna>
+  
+  <type>
+    
+    <single>
+      
+    </single>
+    
+    <double>
+
+    </double>
+    
+    <half>
+
+    </half>
+    
+    <pmpy>
+
+    </pmpy>
+    
+  </type>
+
+  <agitation>
+    
+    <agitated></agitated>
+    <pissed></pissed>
+    <ferocious></ferocious>
+    
+  </agitation>
+  
+  <speciescat>
+    
+    <species>
+      
+      <name>
+        
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+        
+      </name>
+      
+      <farce>
+        
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+        
+      </farce>
+      
+      
+      
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+    <species>
+
+      <name>
+
+        <base></base>
+        <young></young>
+        <middling></middling>
+        <aged></aged>
+
+      </name>
+
+      <farce>
+
+        <f></f>
+        <a></a>
+        <r></r>
+        <c></c>
+        <e></e>
+
+        <cm></cm>
+        <pm></pm>
+        <sm></sm>
+
+        <fer></fer>
+        <def></def>
+
+      </farce>
+
+
+
+    </species>
+
+    
+    
+    
+  </speciescat>
+  
+</fauna>
