@@ -5,7 +5,7 @@ using UnityEngine;
 public class BS : MonoBehaviour
 {
 
-    public bool act_st, neg, state, button;
+    public bool state, button;
 
     public int n = 0;
 

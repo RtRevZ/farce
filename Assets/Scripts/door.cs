@@ -8,7 +8,10 @@ public class door : MonoBehaviour
     public GameObject[] BS;
 
     private bool[] ops;
+    private bool[] neg;
+    private int[] vals;
 
+    private string last;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,23 +21,32 @@ public class door : MonoBehaviour
         }
 
         ops = new bool[BS.Length];
+        neg = new bool[BS.Length];
+        vals = new int[BS.Length];
 
-        for(int i = 0; i < ops.Length - 1; i++)
+        for (int i = 0; i < ops.Length - 1; i++)
         {
             ops[i] = Random.Range(0f, 1f) < .5f ? false : true; //f = and; t = or
+            neg[i] = Random.Range(0f, 1f) < .5f ? false : true;
+            vals[i] = Random.Range(0, BS.Length);
         }
 
-        if (ops.Length > 0) ops[ops.Length - 1] = false;
+        if (BS.Length != 0)
+        {
+            ops[BS.Length - 1] = false;
+            neg[BS.Length - 1] = Random.Range(0f, 1f) < .5f ? false : true;
+            vals[BS.Length - 1] = Random.Range(0, BS.Length);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        string str = "";
+        string str = "", str2 = "";
 
-        for(int i = 0; i < BS.Length; i++)
+        for(int i = 0; i < vals.Length; i++)
         {
-            if (BS[i].GetComponent<BS>().state)
+            if (BS[vals[i]].GetComponent<BS>().state ^ neg[i])
             {
                 str += "1";
             }
@@ -43,13 +55,20 @@ public class door : MonoBehaviour
                 str += "0";
             }
 
+            str2 += vals[i].ToString();
+            if (neg[i]) str2 += "'";
+
             if (ops[i])
             {
                 str += "+";
+                str2 += "+";
             }
         }
 
-        //Debug.Log(str);
+        if (str != last)
+        {
+            Debug.Log(str2 + " " + str);
+        }
 
         int state = 0, nextst = 0;
 
@@ -97,5 +116,7 @@ public class door : MonoBehaviour
             locked = false;
         }
         else locked = true;
+
+        last = str;
     }
 }
