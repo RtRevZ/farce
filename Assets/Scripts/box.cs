@@ -8,8 +8,6 @@ public class box : MonoBehaviour
     private GameObject oob;
     private oOb oob_comp;
     public int type = 0; // v/h flag for vertical or horizontal box. 0 - lift pull and push; 1 - pull and push; 2 - lift
-    private bool first = true;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -59,10 +57,9 @@ public class box : MonoBehaviour
         if (col.gameObject.name == "Ground" || col.gameObject.name == "Box")
         {
             gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-        }
-        if (type != 2 && col.transform == oob_comp.PARTY.GetComponent<Party>().party[oob_comp.PARTY.GetComponent<Party>().leader].transform && oob_comp.party[oob_comp.PARTY.GetComponent<Party>().leader].boxact == 0)
+        } else if (type != 2 && col.transform == oob_comp.PARTY.GetComponent<Party>().party[oob_comp.PARTY.GetComponent<Party>().leader].transform && oob_comp.party[oob_comp.PARTY.GetComponent<Party>().leader].boxact == 0)
         {
-            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            gameObject.GetComponent<Rigidbody2D>().constraints = ~RigidbodyConstraints2D.FreezePositionX & RigidbodyConstraints2D.FreezeAll;
         }
     }
 
@@ -73,7 +70,7 @@ public class box : MonoBehaviour
             if(type == 0 || type == 1)
             {
                 click = 1;
-                gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                gameObject.GetComponent<Rigidbody2D>().constraints = ~RigidbodyConstraints2D.FreezePositionX & RigidbodyConstraints2D.FreezeAll;
             }
         }
 
@@ -91,11 +88,12 @@ public class box : MonoBehaviour
     void OnMouseUp()
     {
 
-        if (click != 2)
+        if (click == 1)
         {
             gameObject.GetComponent<Rigidbody2D>().constraints = ~RigidbodyConstraints2D.FreezePositionY & RigidbodyConstraints2D.FreezeAll;
         }
-        if (click == 2) 
+
+        if (click == 2)
         {
             gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         }
@@ -109,6 +107,7 @@ public class box : MonoBehaviour
         {
             gameObject.GetComponent<Rigidbody2D>().constraints = ~RigidbodyConstraints2D.FreezePositionY & RigidbodyConstraints2D.FreezeAll;
         }
+
     }
 
 }
