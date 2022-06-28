@@ -119,6 +119,7 @@ public class oOb : MonoBehaviour
 
     public void loadScene(string ar, string sc, string ep)
     {
+        StopAllCoroutines();
         StartCoroutine(sceneLoader(ar, sc, ep));
     }
 

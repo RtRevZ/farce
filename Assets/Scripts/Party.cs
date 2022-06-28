@@ -82,6 +82,7 @@ public class Party : MonoBehaviour
             party[leader].transform.GetChild(2).GetChild(4).GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "FParty";
             party[leader].transform.GetChild(2).GetChild(4).GetChild(1).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "FParty";
             party[leader].transform.GetChild(2).GetChild(4).GetChild(2).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "FParty";
+            party[leader].transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "FParty";
 
             mcamera.transform.SetParent(party[leader].transform, false);
 
@@ -109,6 +110,7 @@ public class Party : MonoBehaviour
             party[lastLeader].transform.GetChild(2).GetChild(4).GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "MParty";
             party[lastLeader].transform.GetChild(2).GetChild(4).GetChild(1).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "MParty";
             party[lastLeader].transform.GetChild(2).GetChild(4).GetChild(2).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "MParty";
+            party[lastLeader].transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "MParty";
 
 
             party[nextLeader].GetComponent<follow>().leader = party[leader];
@@ -125,6 +127,7 @@ public class Party : MonoBehaviour
             party[nextLeader].transform.GetChild(2).GetChild(4).GetChild(0).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "RParty";
             party[nextLeader].transform.GetChild(2).GetChild(4).GetChild(1).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "RParty";
             party[nextLeader].transform.GetChild(2).GetChild(4).GetChild(2).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "RParty";
+            party[nextLeader].transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "RParty";
         }
 
     }
