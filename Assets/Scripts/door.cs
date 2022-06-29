@@ -10,11 +10,12 @@ public class door : MonoBehaviour
     private bool[] ops;
     private bool[] neg;
     private int[] vals;
-
-    private string last;
     // Start is called before the first frame update
     void Start()
     {
+
+        string str = "";
+
         if (BS.Length > 0)
         {
             locked = true;
@@ -24,57 +25,53 @@ public class door : MonoBehaviour
         neg = new bool[BS.Length];
         vals = new int[BS.Length];
 
-        for (int i = 0; i < ops.Length - 1; i++)
+        do
         {
-            ops[i] = Random.Range(0f, 1f) < .5f ? false : true; //f = and; t = or
-            neg[i] = Random.Range(0f, 1f) < .5f ? false : true;
-            vals[i] = Random.Range(0, BS.Length);
-        }
+            for (int i = 0; i < ops.Length - 1; i++)
+            {
+                vals[i] = Random.Range(0, BS.Length);
+                neg[i] = Random.Range(0f, 1f) < .5f ? false : true;
+                ops[i] = Random.Range(0f, 1f) < .5f ? false : true; //f = and; t = or
+            }
 
-        if (BS.Length != 0)
-        {
-            ops[BS.Length - 1] = false;
-            neg[BS.Length - 1] = Random.Range(0f, 1f) < .5f ? false : true;
-            vals[BS.Length - 1] = Random.Range(0, BS.Length);
-        }
+            if (BS.Length != 0)
+            {
+                vals[BS.Length - 1] = Random.Range(0, BS.Length);
+                neg[BS.Length - 1] = Random.Range(0f, 1f) < .5f ? false : true;
+                ops[BS.Length - 1] = false;
+            }
+
+            str = "";
+
+            for (int i = 0; i < vals.Length; i++)
+            {
+                if (BS[vals[i]].GetComponent<BS>().state ^ neg[i])
+                {
+                    str += "1";
+                }
+                else
+                {
+                    str += "0";
+                }
+
+
+                if (ops[i])
+                {
+                    str += "+";
+                }
+            }
+
+        } while (DFA(str)); // prevent doors spawning unlocked
     }
 
-    // Update is called once per frame
-    void Update()
+    private bool DFA(string str) //returns TRUE iif DFA HALTS and string is ACCEPTED
     {
-        string str = "", str2 = "";
-
-        for(int i = 0; i < vals.Length; i++)
-        {
-            if (BS[vals[i]].GetComponent<BS>().state ^ neg[i])
-            {
-                str += "1";
-            }
-            else
-            {
-                str += "0";
-            }
-
-            str2 += vals[i].ToString();
-            if (neg[i]) str2 += "'";
-
-            if (ops[i])
-            {
-                str += "+";
-                str2 += "+";
-            }
-        }
-
-        if (str != last)
-        {
-            Debug.Log(str2 + " " + str);
-        }
 
         int state = 0, nextst = 0;
 
         foreach (char c in str)
         {
-            if(state == 0)
+            if (state == 0)
             {
                 if (c == '0')
                 {
@@ -89,7 +86,7 @@ public class door : MonoBehaviour
                     nextst = 2;
                 }
             }
-            if (state == 1) 
+            if (state == 1)
             {
                 if (c == '0' || c == '1')
                 {
@@ -102,7 +99,7 @@ public class door : MonoBehaviour
             }
             if (state == 2)
             {
-                if (c == '0'|| c == '1' || c == '+')
+                if (c == '0' || c == '1' || c == '+')
                 {
                     nextst = 2;
                 }
@@ -113,10 +110,41 @@ public class door : MonoBehaviour
 
         if (state == 2 || state == 0)
         {
-            locked = false;
+            return true;
         }
-        else locked = true;
+        else return false;
 
-        last = str;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        string str = "", str2 = "";
+
+        for (int i = 0; i < vals.Length; i++)
+        {
+            if (BS[vals[i]].GetComponent<BS>().state ^ neg[i])
+            {
+                str += "1";
+            }
+            else
+            {
+                str += "0";
+            }
+
+            str2 += vals[i];
+            if (neg[i]) str2 += "'";
+
+            if (ops[i])
+            {
+                str += "+";
+                str2 += "+";
+            }
+        }
+
+        Debug.Log(str + " " + str2);
+
+        locked = !DFA(str);
     }
 }

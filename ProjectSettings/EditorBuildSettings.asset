@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Areas/CONTROL/menu.unity
+    guid: dbca77a31b28e774eae29536e68ba4ba
+  - enabled: 1
     path: Assets/Areas/CONTROL/genesis.unity
     guid: 96f31c5f48fc1d347bf1f5badb578744
   - enabled: 1

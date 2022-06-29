@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class rotate : MonoBehaviour
 {
+
+    public float speed = 10f;
+
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<Rigidbody2D>().angularVelocity = 10f;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        gameObject.GetComponent<Rigidbody2D>().angularVelocity = speed;
     }
 }
