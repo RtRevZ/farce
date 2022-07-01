@@ -10,7 +10,7 @@ public class oOb : MonoBehaviour
     public FARCE[] party = new FARCE[3];
     public GameObject PARTY;
     public int mw = 0;
-
+    public bool complete = false;
 
     private string par="CONTROL";
     private string psc="genesis";
@@ -55,11 +55,14 @@ public class oOb : MonoBehaviour
                  */
                 if (ar == "CONTROL" && sc == "combat")
                 {
+                    
+
                     SceneManager.LoadScene("Areas/CONTROL/load", LoadSceneMode.Single);
 
                     async1 = SceneManager.LoadSceneAsync("Areas/" + ar + "/" + sc, LoadSceneMode.Additive);
                     async1.allowSceneActivation = false;
                     while (!async1.isDone) { yield return 0; }
+                    Debug.Log(3);
 
                     yield return new WaitForSeconds(5.0f);
 
@@ -73,7 +76,8 @@ public class oOb : MonoBehaviour
                     ar = par;
                     sc = psc;
 
-                    yield return new WaitForSeconds(5.0f);
+                    while (!complete) { yield return 0; }
+                    complete = false;
                 }
 
 
