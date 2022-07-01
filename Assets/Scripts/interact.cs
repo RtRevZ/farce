@@ -52,6 +52,7 @@ public class interact : MonoBehaviour //rename to use
             //flip a coin for whether a bush has something in it
             //flip a coin for whether that thing is an enemy or an item
             //if enemy
+            oOb_comp.opportunity = true;
             abs_load(collider);
             //if item
             //.. add item to inventory
@@ -95,7 +96,7 @@ public class interact : MonoBehaviour //rename to use
     {
         if (collider.name == "MW")
         {
-            oob.GetComponent<oOb>().mw++;
+            oob.GetComponent<oOb>().mw(UnityEngine.Random.Range(1, 20));
             Destroy(collider.gameObject);
         }
 

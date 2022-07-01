@@ -22,7 +22,7 @@ namespace FARCEUtils
 
         public float speed, tmp_spd, wt, tmp_wt;
 
-        public int boxact;
+        public int boxact, mw = 0;
 
         public FARCE(string n, float spd, int bxact)
         {

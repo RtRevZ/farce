@@ -48,6 +48,12 @@ public class Commissioner : MonoBehaviour
 
         bool down = true;
 
+        if (oob.GetComponent<oOb>().opportunity == true)
+        {
+            bb.add_line("LEADER attacks first");
+            oob.GetComponent<oOb>().opportunity = false;
+        }
+
         while (down)
         {
             button_titles[0] = "ONE";

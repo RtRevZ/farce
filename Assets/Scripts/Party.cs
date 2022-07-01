@@ -57,7 +57,7 @@ public class Party : MonoBehaviour
         stay = Input.GetButtonDown("Stay");
         doSwitch = Input.GetButtonDown("Switch") || stay;
 
-        mcamera.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Text>().text = "Magic Wind: " + oob.GetComponent<oOb>().mw;
+        mcamera.transform.GetChild(0).GetChild(1).gameObject.GetComponent<Text>().text = "Magic Wind: " + oob.GetComponent<oOb>().party[leader].mw;
 
         if (doSwitch)
         {

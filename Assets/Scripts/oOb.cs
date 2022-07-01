@@ -10,8 +10,8 @@ public class oOb : MonoBehaviour
     public FARCE[] party = new FARCE[3];
     public GameObject PARTY;
     public GameObject mc, shade;
-    public int mw = 0;
-    public bool complete = false;
+
+    public bool complete = false, opportunity = false;
 
     private string par="CONTROL";
     private string psc="genesis";
@@ -127,6 +127,13 @@ public class oOb : MonoBehaviour
     {
         StopAllCoroutines();
         StartCoroutine(sceneLoader(ar, sc, ep));
+    }
+
+    public void mw(int amt)
+    {
+        party[0].mw += amt;
+        party[1].mw += amt;
+        party[2].mw += amt;
     }
 
     void Awake()
