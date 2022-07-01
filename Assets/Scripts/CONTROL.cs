@@ -62,12 +62,14 @@ public class CONTROL : MonoBehaviour
         if (movement[0] < 0)
         {
             gameObject.transform.localScale = new Vector3(-1,1,1);
-            gameObject.transform.Find("Main Camera").transform.localScale = new Vector3(1,1,1);
+            gameObject.transform.Find("Main Camera").transform.localScale = new Vector3(-1,1,1);
+
         }
 
         if (movement[0] >  0)
         {
             gameObject.transform.localScale = new Vector3(1, 1, 1);
+            gameObject.transform.Find("Main Camera").transform.localScale = new Vector3(1, 1, 1);
         }
 
         rb.velocity = movement;

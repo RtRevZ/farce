@@ -9,6 +9,7 @@ public class oOb : MonoBehaviour
 
     public FARCE[] party = new FARCE[3];
     public GameObject PARTY;
+    public GameObject mc, shade;
     public int mw = 0;
     public bool complete = false;
 
@@ -21,13 +22,12 @@ public class oOb : MonoBehaviour
         PARTY.GetComponent<Party>().updatePartyPositions();
     }
 
+
     public IEnumerator sceneLoader(string ar, string sc, string ep) //load scene by area, scene, entrypoint
     {
         PARTY.GetComponent<Party>().updatePartyPosition();
         Vector3 partypos = PARTY.transform.position;
-
-        PARTY.SetActive(false);
-
+        shade.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         if (ar != par || (ar == par && sc != psc))
         {
             AsyncOperation async1, async2;
@@ -55,14 +55,12 @@ public class oOb : MonoBehaviour
                  */
                 if (ar == "CONTROL" && sc == "combat")
                 {
-                    
-
                     SceneManager.LoadScene("Areas/CONTROL/load", LoadSceneMode.Single);
-
                     async1 = SceneManager.LoadSceneAsync("Areas/" + ar + "/" + sc, LoadSceneMode.Additive);
                     async1.allowSceneActivation = false;
+                    mc.GetComponent<AudioListener>().enabled = false;
                     while (!async1.isDone) { yield return 0; }
-                    Debug.Log(3);
+                    PARTY.SetActive(false);
 
                     yield return new WaitForSeconds(5.0f);
 
@@ -83,6 +81,7 @@ public class oOb : MonoBehaviour
 
             }
 
+            PARTY.SetActive(false);
 
             SceneManager.LoadScene("Areas/CONTROL/load", LoadSceneMode.Single);
 
@@ -95,6 +94,8 @@ public class oOb : MonoBehaviour
             async2 = SceneManager.UnloadSceneAsync("load");
             while (!async2.isDone) { yield return 0; }
             async1.allowSceneActivation = true;
+
+            mc.GetComponent<AudioListener>().enabled = true;
 
 
 
@@ -118,6 +119,7 @@ public class oOb : MonoBehaviour
         }
 
         PARTY.SetActive(true);
+        shade.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
         yield break;
     }
 

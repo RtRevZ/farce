@@ -6,6 +6,7 @@ using UnityEngine.UI;
 /* OYEZ! ALL RISE BEFORE THE HONORABLE
  * THE SUPREME COMMISSIONER OF THE GAME,
  * MISTER COMMISSIONER SIR,
+ * BELOVED OF ALL GAME MASTERS,
  * UNDER WHOSE UNBIASED JUDGEMENT AND SUPERVISION THESE PROCEEDS COMMENCETH
  * IN A CHAOTIC, POTENTIALLY ILLICIT, AND WHOLLY LUDICROUS MANNER
  */
@@ -45,7 +46,9 @@ public class Commissioner : MonoBehaviour
     {
         string[] button_titles = new string[6];
 
-        while (true)
+        bool down = true;
+
+        while (down)
         {
             button_titles[0] = "ONE";
             button_titles[1] = "TWO";
@@ -60,10 +63,16 @@ public class Commissioner : MonoBehaviour
 
             if (selection == -2) oob.GetComponent<oOb>().complete = true;
 
+            if (selection == -3) down = false;
+
             selection = -1;
 
             yield return null;
         }
+
+
+
+        oob.GetComponent<oOb>().complete = true;
     }
 
     void Start()
@@ -71,11 +80,11 @@ public class Commissioner : MonoBehaviour
         bb = disp.GetComponent<bigboard>();
         oob = GameObject.Find("oOb");
 
-        bb.add_line("OYEZ! ALL RISE BEFORE THE HONORABLE");
-        bb.add_line("THE SUPREME COMMISSIONER OF THE GAME,");
-        bb.add_line("MISTER COMMISSIONER SIR, UNDER WHOSE UNBIASED");
-        bb.add_line("JUDGEMENT AND SUPERVISION THESE PROCEEDS COMMENCETH");
-        bb.add_line("IN A CHAOTIC, POTENTIALLY ILLICIT, AND WHOLLY LUDICROUS MANNER");
+        bb.add_line("OYEZ! ALL RISE BEFORE THE HONORABLE AND MOST GRACIOUS, ");
+        bb.add_line("THE SUPREME COMMISSIONER OF THE GAME, MISTER COMMISSIONER SIR,");
+        bb.add_line("BELOVED OF ALL GAME MASTERS, UNDER WHOSE UNBIASED");
+        bb.add_line("JUDGEMENT AND SUPERVISION THESE PROCEEDS COMMENCETH IN A");
+        bb.add_line("CHAOTIC, POTENTIALLY ILLICIT, AND WHOLLY LUDICROUS MANNER...");
 
         audios = gameObject.GetComponent<AudioSource>();
 
