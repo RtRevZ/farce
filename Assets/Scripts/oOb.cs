@@ -22,6 +22,10 @@ public class oOb : MonoBehaviour
         PARTY.GetComponent<Party>().updatePartyPositions();
     }
 
+    public int getLeader()
+    {
+        return PARTY.GetComponent<Party>().leader;
+    }
 
     public IEnumerator sceneLoader(string ar, string sc, string ep) //load scene by area, scene, entrypoint
     {
@@ -140,9 +144,9 @@ public class oOb : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
-        party[0] = new FARCE("Digby Ketton", 2.6f, 1);
-        party[1] = new FARCE("Samuel, Son of Goerthe", 3f, 0);
-        party[2] = new FARCE("Hero the Enchanter", 2.8f, 2);
+        party[0] = new FARCE("Digby Ketton", 2.6f, 1, 0, 9);
+        party[1] = new FARCE("Samuel, Son of Goerthe", 3f, 0, 0, 1);
+        party[2] = new FARCE("Hero the Enchanter", 2.8f, 2, 0, 8);
 
         PARTY = gameObject.transform.GetChild(0).gameObject;
 

@@ -85,7 +85,7 @@ public class Party : MonoBehaviour
             party[leader].transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "FParty";
 
             mcamera.transform.SetParent(party[leader].transform, false);
-
+            mcamera.transform.localScale = party[leader].transform.localScale;
             mcamera.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = oob.GetComponent<oOb>().party[leader].name;
 
             Destroy(party[lastLeader].GetComponent<interact>());

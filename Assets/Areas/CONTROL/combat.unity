@@ -1894,7 +1894,7 @@ GameObject:
   - component: {fileID: 591026992}
   - component: {fileID: 591026991}
   m_Layer: 5
-  m_Name: PM (1)
+  m_Name: DEF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4050,6 +4050,30 @@ MonoBehaviour:
   - {fileID: 1877413200}
   - {fileID: 880098841}
   - {fileID: 1274155183}
+  pinfo:
+  - {fileID: 1025385432}
+  - {fileID: 130123591}
+  - {fileID: 2005670467}
+  tinfo:
+  - {fileID: 1303731272}
+  - {fileID: 370644967}
+  - {fileID: 575779504}
+  attrs:
+  - {fileID: 1171183149}
+  - {fileID: 492870502}
+  - {fileID: 1972401666}
+  - {fileID: 510027392}
+  - {fileID: 1449159611}
+  Mstats:
+  - {fileID: 365841807}
+  - {fileID: 2094170211}
+  - {fileID: 1516409047}
+  - {fileID: 1662850555}
+  - {fileID: 1680162703}
+  - {fileID: 104479864}
+  mStats:
+  - {fileID: 1711444790}
+  - {fileID: 591026989}
   marches:
   - {fileID: 8300000, guid: 4e63a98e5995a1f4aba87884fbd23cb8, type: 3}
   - {fileID: 8300000, guid: 1942d10b61e0a5b4b893a0832f38c599, type: 3}
@@ -4498,7 +4522,7 @@ GameObject:
   - component: {fileID: 1711444793}
   - component: {fileID: 1711444792}
   m_Layer: 5
-  m_Name: SM (1)
+  m_Name: FER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

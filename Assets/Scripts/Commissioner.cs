@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FARCEUtils;
 using UnityEngine.UI;
+using System;
 
 /* OYEZ! ALL RISE BEFORE THE HONORABLE
  * THE SUPREME COMMISSIONER OF THE GAME,
@@ -14,7 +16,15 @@ using UnityEngine.UI;
 public class Commissioner : MonoBehaviour
 {
     public GameObject disp, oob;
+    public oOb oobc;
     public GameObject[] buttons;
+
+    public GameObject[] pinfo;
+    public GameObject[] tinfo;
+    public GameObject[] attrs;
+    public GameObject[] Mstats;
+    public GameObject[] mStats;
+
     public AudioClip[] marches;
     public bool called = false;
 
@@ -23,6 +33,8 @@ public class Commissioner : MonoBehaviour
     private int i;
 
     private int selection = -1;
+    private bool elapsed = false;
+    private bool down = true;
 
     // Start is called before the first frame update
     void disableButtons()
@@ -42,43 +54,123 @@ public class Commissioner : MonoBehaviour
         }
     }
 
-    IEnumerator fightLoop()
+    IEnumerator pturn(FARCE farce)
     {
-        string[] button_titles = new string[6];
+        pinfo[0].GetComponent<Text>().text = farce.name;
+        pinfo[1].GetComponent<Text>().text = INFO.classes[farce.pclass];
+        pinfo[2].GetComponent<Text>().text = farce.level.ToString();
 
-        bool down = true;
-
-        if (oob.GetComponent<oOb>().opportunity == true)
+        if (!oobc.opportunity)
         {
-            bb.add_line("LEADER attacks first");
-            oob.GetComponent<oOb>().opportunity = false;
+            bb.add_line(farce.name + " attacks");
+        } else
+        {
+            bb.add_line(oobc.party[oobc.getLeader()].name + " attacks first");
+            oobc.opportunity = false;
         }
 
-        while (down)
-        {
-            button_titles[0] = "ONE";
-            button_titles[1] = "TWO";
-            button_titles[2] = "THREE";
-            
-            enableAndName(3, button_titles);
+        /* prototyping space for turn structure
+         * 
+         * phases can be CHECKed at any point
+         * turns can be PASSED likewise
+         * attempts to BAIL, on failure, will PASS the present turn, otherwise bailing
+         * On bail, the Commissioner will randomly applaud or chastise the cowardice of the player, then determine whether the player will bail
+         * 
+         * PHASE 1: ITEM
+         *      In which the player can choose to perform up to two of any of these actions
+         *          USE any consumable item
+         *              Salves applied to self or left hand active item
+         *          EQUIP any item in combat inventory to an empty active slot
+         *          UNEQUIP any item in active inventory to combat inventory
+         *          SWAP items in active inventory
+         * 
+         * 
+         * PHASE 2: ACTION
+         *      In which the player can choose to perform at most one of these actions
+         *          USE any consumable item
+         *              Salves applied to self only
+         *          
+         * 
+         * (PHASE 3: BONUS ITEM)
+         *      Chance with appropriate class
+         * 
+         * (PHASE 4: BONUS ACTION)
+         *      Chance with appropriate class
+         * 
+         */
 
-            while(selection == -1)
+        string[] button_titles = new string[6];
+
+        button_titles[0] = "ONE";
+        button_titles[1] = "TWO";
+        button_titles[2] = "THREE";
+
+        enableAndName(3, button_titles);
+
+        while (selection == -1)
+        {
+            yield return null;
+        }
+
+        if (selection == -2) oobc.complete = true;
+
+        if (selection == -3) down = false;
+
+        selection = -1;
+
+        elapsed = true;
+
+        yield return null;
+    }
+
+    IEnumerator eturn(FARCE farce)
+    {
+        //"literally the same as pturn but rng based on opponent AI type: flailing (pure rng), ...
+        yield return null;
+    }
+
+
+    IEnumerator fightLoop()
+    {
+        //get party farces
+        //generate opponents, fauna in bushes, otherwise people of specified classes (not enchanter) 
+        //determine turn order
+        //add tmp 0th turn for leader first to attack if bush and not from timeout
+
+        FARCE[] combatants = oobc.party;
+
+        if (oobc.opportunity == true)
+        {
+            StartCoroutine(pturn(oobc.party[oobc.getLeader()]));
+
+            while (!elapsed)
             {
                 yield return null;
             }
 
-            if (selection == -2) oob.GetComponent<oOb>().complete = true;
+            elapsed = false;
+        }
 
-            if (selection == -3) down = false;
+        while (down)
+        {
+            foreach (FARCE combatant in combatants)
+            {
+                if (Array.Exists(oobc.party, member => member == combatant)) {
+                    StartCoroutine(pturn(combatant));
+                } else StartCoroutine(eturn(combatant));
 
-            selection = -1;
+                while (!elapsed)
+                {
+                    yield return null;
+                }
 
-            yield return null;
+                elapsed = false;
+            }
         }
 
 
 
-        oob.GetComponent<oOb>().complete = true;
+        oobc.complete = true;
     }
 
     void Start()
@@ -86,7 +178,9 @@ public class Commissioner : MonoBehaviour
         bb = disp.GetComponent<bigboard>();
         oob = GameObject.Find("oOb");
 
-        bb.add_line("OYEZ! ALL RISE BEFORE THE HONORABLE AND MOST GRACIOUS, ");
+        oobc = oob.GetComponent<oOb>();
+
+        bb.add_line("OYEZ! ALL RISE BEFORE THE HONORABLE AND MOST RIGHTEOUS, ");
         bb.add_line("THE SUPREME COMMISSIONER OF THE GAME, MISTER COMMISSIONER SIR,");
         bb.add_line("BELOVED OF ALL GAME MASTERS, UNDER WHOSE UNBIASED");
         bb.add_line("JUDGEMENT AND SUPERVISION THESE PROCEEDS COMMENCETH IN A");
@@ -94,16 +188,12 @@ public class Commissioner : MonoBehaviour
 
         audios = gameObject.GetComponent<AudioSource>();
 
-        i = Random.Range(0, 2);
+        i = UnityEngine.Random.Range(0, 2);
 
         audios.clip = marches[i];
         audios.Play();
 
         disableButtons();
-        //get party farces
-        //generate opponents, fauna in bushes, otherwise people of specified classes (not enchanter) 
-        //determine turn order
-        //add tmp 0th turn for leader first to attack if bush and not from timeout
 
         StartCoroutine(fightLoop());
 
@@ -114,43 +204,59 @@ public class Commissioner : MonoBehaviour
     void buttonPress()
     {
         selection = 0;
+        bb.add_line("0");
         disableButtons();
     }
 
     void buttonPress1()
     {
         selection = 1;
+        bb.add_line("1");
         disableButtons();
     }
 
     void buttonPress2()
     {
         selection = 2;
+        bb.add_line("2");
         disableButtons();
     }
 
     void buttonPress3()
     {
         selection = 3;
+        bb.add_line("3");
         disableButtons();
     }
 
     void buttonPress4()
     {
         selection = 4;
+        bb.add_line("4");
         disableButtons();
     }
 
     void buttonPress5()
     {
         selection = 5;
+        bb.add_line("5");
         disableButtons();
+    }
+
+    IEnumerator bail()
+    {
+        yield return new WaitForSeconds(3f);
+        selection = -2;
     }
 
     void buttonPressBAIL()
     {
-        selection = -2;
         disableButtons();
+        bb.add_line("Dude... Bail?");
+        bb.add_line("   Uhm yeah. Bail.");
+        bb.add_line("       Don't need to tell me twice");
+        StartCoroutine(bail());
+
     }
 
 
