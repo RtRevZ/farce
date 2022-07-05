@@ -233,7 +233,7 @@ public class Commissioner : MonoBehaviour
 
     IEnumerator bail()
     {
-        yield return new WaitForSeconds(3f);
+        yield return StartCoroutine(printetdelay(new string[] { "Dude... Bail?", "   Uhm yeah. Bail.", "       Don't need to tell me twice" }, 3f));
         oobc.complete = true;
     }
 
@@ -241,9 +241,7 @@ public class Commissioner : MonoBehaviour
     {
         StopAllCoroutines();
         disableButtons();
-        bb.add_line("Dude... Bail?");
-        bb.add_line("   Uhm yeah. Bail.");
-        bb.add_line("       Don't need to tell me twice");
+
         StartCoroutine(bail());
 
     }
