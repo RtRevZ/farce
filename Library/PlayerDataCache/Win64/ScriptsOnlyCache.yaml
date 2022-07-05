@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - Commissioner
     - Parallax
     - Party
+    - bigboard
     - box
     - cursor
     - door
@@ -15,7 +16,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
@@ -28,6 +28,12 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshPro
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -56,32 +62,50 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
     - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
     - Class: 50
       Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1512}
+      Script: {instanceID: 1538}
     - Class: 114
-      Script: {instanceID: 1692}
+      Script: {instanceID: 1718}
     - Class: 114
-      Script: {instanceID: 2204}
+      Script: {instanceID: 1842}
     - Class: 114
-      Script: {instanceID: 2622}
+      Script: {instanceID: 2230}
     - Class: 114
-      Script: {instanceID: 2786}
+      Script: {instanceID: 2648}
     - Class: 114
-      Script: {instanceID: 3004}
+      Script: {instanceID: 2812}
     - Class: 114
-      Script: {instanceID: 3248}
+      Script: {instanceID: 3030}
     - Class: 114
-      Script: {instanceID: 3262}
+      Script: {instanceID: 3274}
     - Class: 114
-      Script: {instanceID: 3362}
+      Script: {instanceID: 3288}
+    - Class: 114
+      Script: {instanceID: 3388}
+    - Class: 114
+      Script: {instanceID: 3650}
+    - Class: 114
+      Script: {instanceID: 3944}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -128,19 +152,19 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1484}
+      Script: {instanceID: 1510}
     - Class: 114
-      Script: {instanceID: 2204}
+      Script: {instanceID: 2230}
     - Class: 114
-      Script: {instanceID: 2478}
+      Script: {instanceID: 2504}
     - Class: 114
-      Script: {instanceID: 2622}
+      Script: {instanceID: 2648}
     - Class: 114
-      Script: {instanceID: 3004}
+      Script: {instanceID: 3030}
     - Class: 114
-      Script: {instanceID: 3402}
+      Script: {instanceID: 3428}
     - Class: 114
-      Script: {instanceID: 4528}
+      Script: {instanceID: 4554}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -201,6 +225,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 82
@@ -210,21 +236,29 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1512}
+      Script: {instanceID: 1538}
     - Class: 114
-      Script: {instanceID: 2204}
+      Script: {instanceID: 1842}
     - Class: 114
-      Script: {instanceID: 2622}
+      Script: {instanceID: 2222}
     - Class: 114
-      Script: {instanceID: 2722}
+      Script: {instanceID: 2230}
     - Class: 114
-      Script: {instanceID: 2786}
+      Script: {instanceID: 2648}
     - Class: 114
-      Script: {instanceID: 3004}
+      Script: {instanceID: 2748}
     - Class: 114
-      Script: {instanceID: 3248}
+      Script: {instanceID: 2812}
     - Class: 114
-      Script: {instanceID: 3362}
+      Script: {instanceID: 3030}
+    - Class: 114
+      Script: {instanceID: 3274}
+    - Class: 114
+      Script: {instanceID: 3388}
+    - Class: 114
+      Script: {instanceID: 4728}
+    - Class: 114
+      Script: {instanceID: 5106}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -261,15 +295,15 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1660}
+      Script: {instanceID: 1686}
     - Class: 114
-      Script: {instanceID: 2444}
+      Script: {instanceID: 2470}
     - Class: 114
-      Script: {instanceID: 2786}
+      Script: {instanceID: 2812}
     - Class: 114
-      Script: {instanceID: 3248}
+      Script: {instanceID: 3274}
     - Class: 114
-      Script: {instanceID: 4382}
+      Script: {instanceID: 4408}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -298,9 +332,9 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 2786}
+      Script: {instanceID: 2812}
     - Class: 114
-      Script: {instanceID: 3248}
+      Script: {instanceID: 3274}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -388,7 +422,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: ac0e372933d2644ce0e798995c471a02
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Commissioner
@@ -634,16 +668,16 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: move
-  - hash:
-      serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ContentSizeFitter
+  - hash:
+      serializedVersion: 2
+      Hash: a7a89a47a850a61a5f1081b19884ba21
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: bigboard
   - hash:
       serializedVersion: 2
       Hash: afc5b93a7b192de2dcb3832fe35a5c7e
@@ -790,7 +824,7 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
-      Hash: c563675d3accef4f5dac3a4d14e77809
+      Hash: 2845ad45483193f50357f76c3de31f36
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: oOb

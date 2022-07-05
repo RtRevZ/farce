@@ -33,7 +33,6 @@ public class Commissioner : MonoBehaviour
     private int i;
 
     private int selection = -1;
-    private bool elapsed = false;
     private bool down = true;
 
     // Start is called before the first frame update
@@ -52,6 +51,20 @@ public class Commissioner : MonoBehaviour
             buttons[i].SetActive(true);
             buttons[i].transform.GetChild(0).gameObject.GetComponent<Text>().text = titles[i];
         }
+    }
+
+    IEnumerator printetdelay(string[] strs, float delay)
+    {
+        bb.reset();
+
+        foreach(string str in strs)
+        {
+            bb.add_line(str);
+        }
+
+        yield return new WaitForSeconds(delay);
+
+        bb.reset();
     }
 
     IEnumerator pturn(FARCE farce)
@@ -112,13 +125,9 @@ public class Commissioner : MonoBehaviour
             yield return null;
         }
 
-        if (selection == -2) oobc.complete = true;
-
         if (selection == -3) down = false;
 
         selection = -1;
-
-        elapsed = true;
 
         yield return null;
     }
@@ -132,23 +141,13 @@ public class Commissioner : MonoBehaviour
 
     IEnumerator fightLoop()
     {
-        //get party farces
-        //generate opponents, fauna in bushes, otherwise people of specified classes (not enchanter) 
-        //determine turn order
-        //add tmp 0th turn for leader first to attack if bush and not from timeout
 
+        //generate opponents, fauna in bushes, otherwise people of specified classes (not enchanter) 
         FARCE[] combatants = oobc.party;
 
         if (oobc.opportunity == true)
         {
-            StartCoroutine(pturn(oobc.party[oobc.getLeader()]));
-
-            while (!elapsed)
-            {
-                yield return null;
-            }
-
-            elapsed = false;
+            yield return StartCoroutine(pturn(oobc.party[oobc.getLeader()]));
         }
 
         while (down)
@@ -156,15 +155,8 @@ public class Commissioner : MonoBehaviour
             foreach (FARCE combatant in combatants)
             {
                 if (Array.Exists(oobc.party, member => member == combatant)) {
-                    StartCoroutine(pturn(combatant));
-                } else StartCoroutine(eturn(combatant));
-
-                while (!elapsed)
-                {
-                    yield return null;
-                }
-
-                elapsed = false;
+                    yield return StartCoroutine(pturn(combatant));
+                } else yield return StartCoroutine(eturn(combatant));
             }
         }
 
@@ -173,18 +165,12 @@ public class Commissioner : MonoBehaviour
         oobc.complete = true;
     }
 
-    void Start()
+    IEnumerator Start()
     {
         bb = disp.GetComponent<bigboard>();
         oob = GameObject.Find("oOb");
 
         oobc = oob.GetComponent<oOb>();
-
-        bb.add_line("OYEZ! ALL RISE BEFORE THE HONORABLE AND MOST RIGHTEOUS, ");
-        bb.add_line("THE SUPREME COMMISSIONER OF THE GAME, MISTER COMMISSIONER SIR,");
-        bb.add_line("BELOVED OF ALL GAME MASTERS, UNDER WHOSE UNBIASED");
-        bb.add_line("JUDGEMENT AND SUPERVISION THESE PROCEEDS COMMENCETH IN A");
-        bb.add_line("CHAOTIC, POTENTIALLY ILLICIT, AND WHOLLY LUDICROUS MANNER...");
 
         audios = gameObject.GetComponent<AudioSource>();
 
@@ -194,6 +180,8 @@ public class Commissioner : MonoBehaviour
         audios.Play();
 
         disableButtons();
+
+        yield return StartCoroutine(printetdelay(new string[] { "OYEZ! ALL RISE BEFORE THE HONORABLE AND MOST RIGHTEOUS, ", "THE SUPREME COMMISSIONER OF THE GAME, MISTER COMMISSIONER SIR,", "BELOVED OF ALL GAME MASTERS, UNDER WHOSE UNBIASED", "JUDGEMENT AND SUPERVISION THESE PROCEEDS COMMENCETH IN A", "CHAOTIC, POTENTIALLY ILLICIT, AND WHOLLY LUDICROUS MANNER..." }, 10f));
 
         StartCoroutine(fightLoop());
 
@@ -246,11 +234,12 @@ public class Commissioner : MonoBehaviour
     IEnumerator bail()
     {
         yield return new WaitForSeconds(3f);
-        selection = -2;
+        oobc.complete = true;
     }
 
     void buttonPressBAIL()
     {
+        StopAllCoroutines();
         disableButtons();
         bb.add_line("Dude... Bail?");
         bb.add_line("   Uhm yeah. Bail.");
