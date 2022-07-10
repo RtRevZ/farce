@@ -11,6 +11,8 @@ public class oOb : MonoBehaviour
     public GameObject PARTY;
     public GameObject mc, shade;
 
+    public GameWarden gw = new GameWarden();
+
     public bool complete = false, opportunity = false;
 
     private string par="CONTROL";
@@ -144,9 +146,9 @@ public class oOb : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
-        party[0] = new FARCE("Digby Ketton", 2.6f, 1, 0, 9);
-        party[1] = new FARCE("Samuel, Son of Goerthe", 3f, 0, 0, 1);
-        party[2] = new FARCE("Hero the Enchanter", 2.8f, 2, 0, 8);
+        party[0] = new FARCE(gw, "Digby Ketton", 2.6f, 0, 9);
+        party[1] = new FARCE(gw, "Samuel , Son of Goerthe", 3f, 0, 1);
+        party[2] = new FARCE(gw, "Hero the Enchanter", 2.8f, 0, 8);
 
         PARTY = gameObject.transform.GetChild(0).gameObject;
 

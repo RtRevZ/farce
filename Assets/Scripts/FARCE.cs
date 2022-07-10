@@ -1,3 +1,5 @@
+using System.IO;
+
 namespace FARCEUtils
 {
 
@@ -9,11 +11,36 @@ namespace FARCEUtils
         public float weight;
     }
 
-    public class INFO
+    public class GameWarden
     {
-        static public string[] classes = { "Pugilist", "Woodsman", "Warrior", "Scout", "Defender", "Man-At-Large", "Bard", "Salesman", "Enchanter", "Monk"};
-    }
+        // Start is called before the first frame update
+        string[] fauna;
+        string[] classes;
+        string[] weapons;
 
+        string tsvreader(string[] lit, int ent, int i)
+        {
+            return lit[ent].Split('\t')[i];
+        }
+
+        public string getClassName(int i)
+        {
+            return tsvreader(classes, i, 0);
+        }
+
+        public int getClassBox(int i)
+        {
+            return int.Parse(tsvreader(classes, i, 4));
+        }
+
+        public GameWarden()
+        {
+            fauna = File.ReadAllLines(@"Assets\Scripts\fauna.txt");
+            classes = File.ReadAllLines(@"Assets\Scripts\classes.txt");
+        }
+
+
+    }
 
     public class FARCE //character sheet
     {
@@ -23,41 +50,114 @@ namespace FARCEUtils
         //player base properties
         public int level, pclass, exp;
 
-        public int[] attrs = new int[5]; // Core Attributes - F.A.R.C.E. base, affected at level up
-        public int[] tmp_attrs = new int[5]; //FARCE with effects
+        public int[] attrs_lvl = new int[5]; //  Core Attributes - F.A.R.C.E. base, rng + class at creation, affected at level up
+        public int[] attrs_tmp = new int[5]; //  Core Attributes - F.A.R.C.E. but with effects
 
-        public int[] skilz = new int[10]; // Skills/Bonuses base (calc'd from farce)
-        public int[] skilzz = new int[10]; // Skills/Bonuses added by level up
-        public int[] tmp_skilz = new int[10]; //skills/bonuses with effects
+        public int[] skilz_lvl = new int[10]; // Skills - from attrs_lvl + class at creation, affected at level up
 
-        public int[] stats = new int[5]; // Combat Stats (calc'd however)
-        public int[] statss = new int[5]; // Combat Stats added by level up
-        public int[] tmp_stats = new int[5]; // Combat stats with effects
+        public int[] stats_lvl = new int[5]; // combat stats - from attrs + skils + class at creation, affected at level up
+        public int[] stats_tmp = new int[5]; // combat stats - stats but with affects
+
+        public int[,] effects = new int[3,10]; //effects 0 - type, 1 - amount, 2 - turns 
 
         public float speed, wt;
 
         public int boxact, mw = 0;
 
-        public item[,] inventory = new item[2, 36]; //0 - regular: 1 - combat
+        public int weapon_id = 0;
 
-
-        public FARCE(string n, float spd, int bxact, int lvl, int cls)
+        public FARCE(GameWarden gw, string n, float spd, int lvl, int cls)
         {
             name = n;
             speed = spd;
-            boxact = bxact;
+            boxact = gw.getClassBox(cls);
             level = lvl;
             pclass = cls;
         }
 
-        public void recalculate()
-        {
-
-        }
-
         private void lvlup()
         {
-            //handle  
+        }
+
+        public void apply_effect(int atrstat, int type, int amount, int turns = 0)
+        {
+            if(type == 0)
+            {
+                if(atrstat < 5)
+                {
+                    attrs_tmp[atrstat] += amount;
+                }
+                else
+                {
+                    stats_tmp[atrstat % 5] += amount;
+                }
+
+                return;
+            }
+
+
+            if(type == 3)
+            {
+                amount = amount / turns;
+                type = 1;
+            }
+
+            effects[0, atrstat] = type;
+            effects[1, atrstat] = amount;
+            effects[2, atrstat] = turns;
+        }
+
+        public void eval_effects()
+        {
+            for(int i = 0; i < 5; i++)
+            {
+                if (effects[2, i] != 0)
+                {
+                    if(effects[0, i] == 1) //repeating effect
+                    {
+                        attrs_tmp[i] += effects[1, i];
+                    }
+
+                    if (effects[0, i] == 2) //diminishing effect
+                    {
+                        attrs_tmp[i] += effects[1, i];
+                        effects[1, i] = effects[1, i] * (effects[2, i] - 1) / effects[2, i];
+                    }
+
+                    effects[2, i]--;
+
+                    if(effects[2, i] == 0)
+                    {
+                        effects[0, i] = 0;
+                        effects[1, i] = 0;
+                    }
+                }
+
+                if (effects[2, i + 5] != 0)
+                {
+                    if (effects[2, i + 5] != 0)
+                    {
+                        if (effects[0, i + 5] == 1) //repeating effect
+                        {
+                            stats_tmp[i] += effects[1, i + 5];
+                        }
+
+                        if (effects[0, i] == 2) //diminishing effect
+                        {
+                            stats_tmp[i] += effects[1, i + 5];
+                            effects[1, i + 5] = effects[1, i + 5] * (effects[2, i + 5] - 1) / effects[2, i + 5];
+                        }
+
+                        effects[2, i + 5]--;
+
+                        if (effects[2, i + 5] == 0)
+                        {
+                            effects[0, i + 5] = 0;
+                            effects[1, i + 5] = 0;
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -35,6 +35,8 @@ public class Commissioner : MonoBehaviour
     private int selection = -1;
     private bool down = true;
 
+    private bool cphase;
+
     // Start is called before the first frame update
     void disableButtons()
     {
@@ -67,28 +69,34 @@ public class Commissioner : MonoBehaviour
         bb.reset();
     }
 
+    void manyprint(string[] strs)
+    {
+        foreach (string str in strs)
+        {
+            bb.add_line(str);
+        }
+    }
+
     IEnumerator pturn(FARCE farce)
     {
         pinfo[0].GetComponent<Text>().text = farce.name;
-        pinfo[1].GetComponent<Text>().text = INFO.classes[farce.pclass];
+        pinfo[1].GetComponent<Text>().text = oobc.gw.getClassName(farce.pclass);
         pinfo[2].GetComponent<Text>().text = farce.level.ToString();
+
+        string[] button_titles = new string[6];
+
+        bb.reset();
 
         if (!oobc.opportunity)
         {
-            bb.add_line(farce.name + " attacks");
+            bb.add_line(farce.name + " engages");
         } else
         {
-            bb.add_line(oobc.party[oobc.getLeader()].name + " attacks first");
+            bb.add_line(oobc.party[oobc.getLeader()].name + " is first to engage");
             oobc.opportunity = false;
         }
 
         /* prototyping space for turn structure
-         * 
-         * phases can be CHECKed at any point
-         * turns can be PASSED likewise
-         * attempts to BAIL, on failure, will PASS the present turn, otherwise bailing
-         * On bail, the Commissioner will randomly applaud or chastise the cowardice of the player, then determine whether the player will bail
-         * 
          * PHASE 1: ITEM
          *      In which the player can choose to perform up to two of any of these actions
          *          USE any consumable item
@@ -101,35 +109,91 @@ public class Commissioner : MonoBehaviour
          * PHASE 2: ACTION
          *      In which the player can choose to perform at most one of these actions
          *          USE any consumable item
-         *              Salves applied to self only
-         *          
-         * 
-         * (PHASE 3: BONUS ITEM)
-         *      Chance with appropriate class
-         * 
-         * (PHASE 4: BONUS ACTION)
-         *      Chance with appropriate class
-         * 
+         *          Use any weapon/class special
+         *              DWTH if DW'ing will be actioned 2x
          */
 
-        string[] button_titles = new string[6];
+        cphase = false;
 
-        button_titles[0] = "ONE";
-        button_titles[1] = "TWO";
-        button_titles[2] = "THREE";
-
-        enableAndName(3, button_titles);
-
-        while (selection == -1)
+        do //ITEM PHASE
         {
-            yield return null;
-        }
+            //What do?
+            //USE
+            //EQUIP
+            //UNEQUIP
 
-        if (selection == -3) down = false;
+            button_titles[0] = "USE";
+            button_titles[1] = "EQUIP";
+            button_titles[2] = "UNEQUIP";
 
-        selection = -1;
+            manyprint(new string[] { "What will " + farce.name.Split(' ')[0] + " do?", "", "USE a consumable item,", "EQUIP an item,", "or, UNEQUIP an item" });
 
-        yield return null;
+            enableAndName(3, button_titles);
+
+            selection = -1;
+
+            while (selection == -1)
+            {
+                yield return null;
+            }
+
+            if (selection == -2)
+            {
+                break;
+            }// break to check
+            if (selection == -3)
+            {
+                yield break;
+            }// abruptly end turn coroutine on pass
+            if (selection == -4)
+            {
+                continue; //go back to top of turn
+            }
+
+            cphase = true;
+        } while (!cphase);
+
+        cphase = false;
+
+        do //ITEM PHASE
+        {
+            //What do?
+            //USE
+            //EQUIP
+            //UNEQUIP
+
+            button_titles[0] = "USE";
+            button_titles[1] = "ATTACK";
+            button_titles[2] = "SPECIAL";
+
+            manyprint(new string[] { "What will " + farce.name.Split(' ')[0] + " do now?", "", "USE a consumable item,", "ATTACK using the active weapon,", "or, perform a SPECIAL attack" });
+
+            enableAndName(3, button_titles);
+
+            selection = -1;
+
+            while (selection == -1)
+            {
+                yield return null;
+            }
+
+            if (selection == -2)
+            {
+                break;
+            }// break to check
+            if (selection == -3)
+            {
+                yield break;
+            }// abruptly end turn coroutine on pass
+            if (selection == -4)
+            {
+                continue; //go back to top of turn
+            }
+
+            cphase = true;
+        } while (!cphase);
+
+        //Duplicate Item & action phases with conditions and prob
     }
 
     IEnumerator eturn(FARCE farce)
@@ -177,9 +241,9 @@ public class Commissioner : MonoBehaviour
         i = UnityEngine.Random.Range(0, 2);
 
         audios.clip = marches[i];
-        audios.Play();
 
         disableButtons();
+        audios.PlayDelayed(5f);
 
         yield return StartCoroutine(printetdelay(new string[] { "OYEZ! ALL RISE BEFORE THE HONORABLE AND MOST RIGHTEOUS, ", "THE SUPREME COMMISSIONER OF THE GAME, MISTER COMMISSIONER SIR,", "BELOVED OF ALL GAME MASTERS, UNDER WHOSE UNBIASED", "JUDGEMENT AND SUPERVISION THESE PROCEEDS COMMENCETH IN A", "CHAOTIC, POTENTIALLY ILLICIT, AND WHOLLY LUDICROUS MANNER..." }, 10f));
 
@@ -241,9 +305,23 @@ public class Commissioner : MonoBehaviour
     {
         StopAllCoroutines();
         disableButtons();
-
+        audios.Stop();
         StartCoroutine(bail());
+    }
 
+    void buttonPressCHECK()
+    {
+        selection = -2;
+    }
+
+    void buttonPressPASS()
+    {
+        selection = -3;
+    }
+
+    void buttonPressBACK()
+    {
+        selection = -4;
     }
 
 
