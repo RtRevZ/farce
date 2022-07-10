@@ -422,7 +422,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: ac0e372933d2644ce0e798995c471a02
+      Hash: bcd1dc362ac579ef4377996b028f675d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Commissioner

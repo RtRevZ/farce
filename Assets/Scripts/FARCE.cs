@@ -60,10 +60,19 @@ namespace FARCEUtils
             return Array.ConvertAll(tsvreader(fauna, i, 3).Split(','), int.Parse);
         }
 
+        public int[] getWeaponEffects(int i, int j)
+        {
+            string effect = tsvreader(weapons, i, 3).Split(';')[j];
+            int[] ieffect = Array.ConvertAll(effect.Split(','), int.Parse);
+            int amt = int.Parse(tsvreader(weapons, i, 2));
+            return new int[] {ieffect[1], ieffect[0], amt, ieffect[2]};
+        }
+
         public GameWarden()
         {
             fauna = File.ReadAllLines(@"Assets\Scripts\fauna.txt");
             classes = File.ReadAllLines(@"Assets\Scripts\classes.txt");
+            weapons = File.ReadAllLines(@"Assets\Scripts\weapons.txt");
         }
 
 

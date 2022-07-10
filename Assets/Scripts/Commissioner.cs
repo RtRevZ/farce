@@ -26,7 +26,6 @@ public class Commissioner : MonoBehaviour
     public GameObject[] mStats;
 
     public AudioClip[] marches;
-    public bool called = false;
 
     private AudioSource audios;
     private bigboard bb;
@@ -36,6 +35,9 @@ public class Commissioner : MonoBehaviour
     private bool down = true;
 
     private bool cphase;
+
+
+    private FARCE ptarget, etarget;
 
     // Start is called before the first frame update
     void disableButtons()
@@ -190,6 +192,13 @@ public class Commissioner : MonoBehaviour
                 continue; //go back to top of turn
             }
 
+            if (selection == 1)
+            {
+                int[] weapon_effect = oobc.gw.getWeaponEffects(farce.weapon_id, 0);
+
+                etarget.apply_effect(weapon_effect[0], weapon_effect[1], weapon_effect[2], weapon_effect[3]);
+            }
+
             cphase = true;
         } while (!cphase);
 
@@ -199,7 +208,7 @@ public class Commissioner : MonoBehaviour
     IEnumerator eturn(FARCE farce)
     {
         //"literally the same as pturn but rng based on opponent AI type: flailing (pure rng), ...
-        yield return StartCoroutine(printetdelay(new string[] { farce.name + "ly actions" }, 5f));
+        yield return StartCoroutine(printetdelay(new string[] { farce.name + "ly actions", "CP: " + farce.stats_tmp[0].ToString() }, 5f));
         yield return null;
     }
 
@@ -209,6 +218,17 @@ public class Commissioner : MonoBehaviour
 
         //generate opponents, fauna in bushes, otherwise people of specified classes (not enchanter) 
         FARCE[] combatants = { new FARCE(oobc.gw, "", 0f, 1, 10), oobc.party[0], oobc.party[1], oobc.party[2] };
+
+        ptarget = oobc.party[oobc.getLeader()];
+        etarget = combatants[0];
+
+        pinfo[0].GetComponent<Text>().text = ptarget.name;
+        pinfo[1].GetComponent<Text>().text = oobc.gw.getClassName(ptarget.pclass);
+        pinfo[2].GetComponent<Text>().text = ptarget.level.ToString();
+
+        tinfo[0].GetComponent<Text>().text = etarget.name;
+        tinfo[1].GetComponent<Text>().text = oobc.gw.getClassName(etarget.pclass);
+        tinfo[2].GetComponent<Text>().text = etarget.level.ToString();
 
         if (oobc.opportunity == true)
         {
