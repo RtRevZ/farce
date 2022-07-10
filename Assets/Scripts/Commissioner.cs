@@ -199,6 +199,7 @@ public class Commissioner : MonoBehaviour
     IEnumerator eturn(FARCE farce)
     {
         //"literally the same as pturn but rng based on opponent AI type: flailing (pure rng), ...
+        yield return StartCoroutine(printetdelay(new string[] { farce.name + "ly actions" }, 5f));
         yield return null;
     }
 
@@ -207,7 +208,7 @@ public class Commissioner : MonoBehaviour
     {
 
         //generate opponents, fauna in bushes, otherwise people of specified classes (not enchanter) 
-        FARCE[] combatants = oobc.party;
+        FARCE[] combatants = { new FARCE(oobc.gw, "", 0f, 1, 10), oobc.party[0], oobc.party[1], oobc.party[2] };
 
         if (oobc.opportunity == true)
         {

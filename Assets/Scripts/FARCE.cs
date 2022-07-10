@@ -1,4 +1,6 @@
 using System.IO;
+using System;
+using UnityEngine;
 
 namespace FARCEUtils
 {
@@ -33,6 +35,31 @@ namespace FARCEUtils
             return int.Parse(tsvreader(classes, i, 4));
         }
 
+        public int getClassSpecial(int i)
+        {
+            return int.Parse(tsvreader(classes, i, 6));
+        }
+
+        public string getFaunaName(int i)
+        {
+            return tsvreader(fauna, i, 0);
+        }
+
+        public int getFaunaLevel(int i)
+        {
+            return int.Parse(tsvreader(fauna, i, 7));
+        }
+
+        public int[] getFaunaAttrs(int i)
+        {
+            return Array.ConvertAll(tsvreader(fauna, i, 2).Split(','), int.Parse);
+        }
+
+        public int[] getFaunaStats(int i)
+        {
+            return Array.ConvertAll(tsvreader(fauna, i, 3).Split(','), int.Parse);
+        }
+
         public GameWarden()
         {
             fauna = File.ReadAllLines(@"Assets\Scripts\fauna.txt");
@@ -41,6 +68,7 @@ namespace FARCEUtils
 
 
     }
+
 
     public class FARCE //character sheet
     {
@@ -62,12 +90,24 @@ namespace FARCEUtils
 
         public float speed, wt;
 
-        public int boxact, mw = 0;
+        public int boxact, mw = 0, rank = 0;
 
         public int weapon_id = 0;
 
         public FARCE(GameWarden gw, string n, float spd, int lvl, int cls)
         {
+            if(gw.getClassSpecial(cls) == 7) //special 7 indicates fauna, and that further data needs to be grabbed from the fauna tsv
+            {
+                name = gw.getFaunaName(lvl);
+                level = gw.getFaunaLevel(lvl);
+                stats_lvl = gw.getFaunaStats(lvl);
+                stats_tmp = stats_lvl;
+                pclass = cls;
+                return;
+            }
+
+            //otherwise, presume classed n/pc
+
             name = n;
             speed = spd;
             boxact = gw.getClassBox(cls);
