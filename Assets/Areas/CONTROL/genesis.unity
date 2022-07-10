@@ -776,9 +776,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   party:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1901303349}
+  - {fileID: 1293006219}
+  - {fileID: 289597960}
   leader: 0
 --- !u!4 &324111079
 Transform:

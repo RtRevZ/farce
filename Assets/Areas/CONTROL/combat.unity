@@ -4293,7 +4293,6 @@ MonoBehaviour:
   marches:
   - {fileID: 8300000, guid: 4e63a98e5995a1f4aba87884fbd23cb8, type: 3}
   - {fileID: 8300000, guid: 1942d10b61e0a5b4b893a0832f38c599, type: 3}
-  called: 0
 --- !u!4 &1536992058
 Transform:
   m_ObjectHideFlags: 0
@@ -4320,7 +4319,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

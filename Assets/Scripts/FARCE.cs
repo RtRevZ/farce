@@ -70,9 +70,9 @@ namespace FARCEUtils
 
         public GameWarden()
         {
-            fauna = File.ReadAllLines(@"Assets\Scripts\fauna.txt");
-            classes = File.ReadAllLines(@"Assets\Scripts\classes.txt");
-            weapons = File.ReadAllLines(@"Assets\Scripts\weapons.txt");
+            fauna = File.ReadAllLines(Application.dataPath + "/StreamingAssets/fauna.txt");
+            classes = File.ReadAllLines(Application.dataPath + "/StreamingAssets/classes.txt");
+            weapons = File.ReadAllLines(Application.dataPath + "/StreamingAssets/weapons.txt");
         }
 
 

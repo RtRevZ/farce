@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Areas/CONTROL/menu.unity
     guid: dbca77a31b28e774eae29536e68ba4ba
@@ -21,9 +18,9 @@ EditorBuildSettings:
     path: Assets/Areas/TEST1/1.unity
     guid: 68ae9161cf7ee1b4ca8b00ff7884da43
   - enabled: 1
-    path: Assets/Areas/CONTROL/load.unity
-    guid: 1aa6699801fced04bae7e42a9eac9014
-  - enabled: 1
     path: Assets/Areas/CONTROL/combat.unity
     guid: bed634c807b87194187ed4be81043886
+  - enabled: 1
+    path: Assets/Areas/CONTROL/load.unity
+    guid: 1aa6699801fced04bae7e42a9eac9014
   m_configObjects: {}

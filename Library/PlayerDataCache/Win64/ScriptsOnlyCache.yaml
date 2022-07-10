@@ -422,7 +422,7 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: bcd1dc362ac579ef4377996b028f675d
+      Hash: 7082082de9e3de39de1e6a0aadae5c93
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Commissioner
@@ -954,7 +954,7 @@ ScriptsOnlyBuild:
   - Assets/Areas/CONTROL/genesis.unity
   - Assets/Areas/TEST1/0.unity
   - Assets/Areas/TEST1/1.unity
-  - Assets/Areas/CONTROL/load.unity
   - Assets/Areas/CONTROL/combat.unity
+  - Assets/Areas/CONTROL/load.unity
   playerPath: C:/Users/camer/Farce! (A Platformer with sequences of Turn-Based Combat)/Build/Farce!
     (A Platformer with sequences of Turn-Based Combat).exe
