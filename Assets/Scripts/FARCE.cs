@@ -52,6 +52,11 @@ namespace FARCEUtils
             return Array.ConvertAll(tsvreader(fauna, i, 3).Split(','), int.Parse);
         }
 
+        public Tuple<string, int[], int> getFaunaAttack(int i, int j)
+        {
+            return new Tuple<string, int[], int>(tsvreader(fauna, i, 4).Split(',')[j], Array.ConvertAll(tsvreader(fauna, i, 6).Split(';')[j].Split(','), int.Parse), int.Parse(tsvreader(fauna, i, 5)));
+        }
+
         public int[] getClassAttrs(int i)
         {
             return Array.ConvertAll(tsvreader(classes, i, 1).Split(','), int.Parse);
@@ -92,7 +97,7 @@ namespace FARCEUtils
         public string name;
 
         //player base properties
-        public int level, pclass, exp;
+        public int level, pclass, exp, ftype;
 
         public int[] attrs_lvl = new int[5]; //  Core Attributes - F.A.R.C.E. base, rng + class at creation, affected at level up
         public int[] attrs_tmp = new int[5]; //  Core Attributes - F.A.R.C.E. but with effects
@@ -115,6 +120,7 @@ namespace FARCEUtils
             if(gw.getClassSpecial(cls) == 7) //special 7 indicates fauna, and that further data needs to be grabbed from the fauna tsv
             {
                 name = gw.getFaunaName(lvl);
+                ftype = lvl;
                 level = gw.getFaunaLevel(lvl);
                 stats_lvl = gw.getFaunaStats(lvl);
                 stats_tmp = stats_lvl;

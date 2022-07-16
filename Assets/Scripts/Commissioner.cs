@@ -221,8 +221,8 @@ public class Commissioner : MonoBehaviour
                         etarget = ftp;
                     } else
                     {
-                        combatants.Remove(farce);
-                        pmembers.Remove(farce);
+                        combatants.Remove(etarget);
+                        pmembers.Remove(etarget);
                         yield break;
                     }
 
@@ -252,7 +252,38 @@ public class Commissioner : MonoBehaviour
             yield break;
         }
         //"literally the same as pturn but rng based on opponent AI type: flailing (pure rng), ...
-        yield return StartCoroutine(printetdelay(new string[] { farce.name + "ly actions", "CP: " + farce.stats_tmp[0].ToString() }, 5f));
+        if (farce.pclass == 10)
+        {
+            yield return StartCoroutine(printetdelay(new string[] { farce.name + "ly actions", "CP: " + farce.stats_tmp[0].ToString() }, 3f));
+
+            Tuple<string, int[], int> atk = oobc.gw.getFaunaAttack(farce.ftype, 0);
+
+            ptarget.apply_effect(atk.Item2[1], atk.Item2[0], atk.Item3, atk.Item2[2]);
+            if (ptarget.stats_tmp[0] == 0)
+            {
+                int tmp = pmembers.IndexOf(ptarget);
+                if (pmembers.Count - 1 != 0)
+                {
+                    FARCE ftp;
+                    ftp = pmembers[(tmp + 1) % pmembers.Count];
+                    combatants.Remove(ptarget);
+                    pmembers.Remove(ptarget);
+                    ptarget = ftp;
+                }
+                else
+                {
+                    combatants.Remove(ptarget);
+                    pmembers.Remove(ptarget);
+                    yield break;
+                }
+
+            }
+        }
+        else
+        {
+
+        }
+        
         yield return null;
     }
 
