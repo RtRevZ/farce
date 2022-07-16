@@ -5,14 +5,6 @@ using UnityEngine;
 namespace FARCEUtils
 {
 
-    public class item
-    {
-        public bool stackable = false;
-        public int quantity;
-        public int value;
-        public float weight;
-    }
-
     public class GameWarden
     {
         // Start is called before the first frame update
@@ -58,6 +50,21 @@ namespace FARCEUtils
         public int[] getFaunaStats(int i)
         {
             return Array.ConvertAll(tsvreader(fauna, i, 3).Split(','), int.Parse);
+        }
+
+        public int[] getClassAttrs(int i)
+        {
+            return Array.ConvertAll(tsvreader(classes, i, 1).Split(','), int.Parse);
+        }
+
+        public int[] getClassSkills(int i)
+        {
+            return Array.ConvertAll(tsvreader(classes, i, 2).Split(','), int.Parse);
+        }
+
+        public int[] getClassStats(int i)
+        {
+            return Array.ConvertAll(tsvreader(classes, i, 3).Split(','), int.Parse);
         }
 
         public int[] getWeaponEffects(int i, int j)
@@ -120,6 +127,15 @@ namespace FARCEUtils
             name = n;
             speed = spd;
             boxact = gw.getClassBox(cls);
+
+            stats_lvl = gw.getClassStats(cls);
+            skilz_lvl = gw.getClassSkills(cls);
+            attrs_lvl = gw.getClassAttrs(cls);
+
+
+            stats_tmp = stats_lvl;
+            attrs_tmp = attrs_lvl;
+
             level = lvl;
             pclass = cls;
         }
@@ -135,10 +151,29 @@ namespace FARCEUtils
                 if(atrstat < 5)
                 {
                     attrs_tmp[atrstat] += amount;
+                    if (attrs_tmp[atrstat] < 0)
+                    {
+                        attrs_tmp[atrstat] = 0;
+                    }
+
+                    if (attrs_tmp[atrstat] > attrs_lvl[atrstat])
+                    {
+                        attrs_tmp[atrstat] = attrs_lvl[atrstat];
+                    }
                 }
                 else
                 {
                     stats_tmp[atrstat % 5] += amount;
+
+                    if (stats_tmp[atrstat % 5] < 0)
+                    {
+                        stats_tmp[atrstat % 5] = 0;
+                    }
+
+                    if (stats_tmp[atrstat % 5] > stats_lvl[atrstat % 5])
+                    {
+                        stats_tmp[atrstat % 5] = stats_lvl[atrstat % 5];
+                    }
                 }
 
                 return;
@@ -205,6 +240,26 @@ namespace FARCEUtils
                             effects[1, i + 5] = 0;
                         }
                     }
+                }
+
+                if (attrs_tmp[i] < 0)
+                {
+                    attrs_tmp[i] = 0;
+                }
+
+                if (attrs_tmp[i] > attrs_lvl[i])
+                {
+                    attrs_tmp[i] = attrs_lvl[i];
+                }
+
+                if (stats_tmp[i] < 0)
+                {
+                    stats_tmp[i] = 0;
+                }
+
+                if (stats_tmp[i] > stats_lvl[i])
+                {
+                    stats_tmp[i] = stats_lvl[i];
                 }
             }
         }

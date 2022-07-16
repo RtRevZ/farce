@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 321}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 2560
     height: 1349
-  m_MinSize: {x: 875, y: 321}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -120,10 +120,10 @@ MonoBehaviour:
     y: 30
     width: 2560
     height: 1299
-  m_MinSize: {x: 432, y: 271}
-  m_MaxSize: {x: 18002, y: 10021}
+  m_MinSize: {x: 431, y: 250}
+  m_MaxSize: {x: 18001, y: 10000}
   vertical: 0
-  controlID: 506
+  controlID: 339
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -330,9 +330,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0, y: 0, z: 44.8703}
+    m_Target: {x: 2.0427723, y: -2.9458745, z: -53.47048}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 44.8703}
+    m_Value: {x: 2.0427723, y: -2.9458745, z: -53.47048}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -383,9 +383,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 54.683876
+    m_Target: 17.493967
     speed: 2
-    m_Value: 54.683876
+    m_Value: 17.493967
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -438,9 +438,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 98100000
       m_LastClickedID: 0
-      m_ExpandedIDs: 76f3ffff8ef3ffff4cf4ffff60f4ffff68f4ffffbef4ffffcef4ffffd6f4ffff20f6ffff84f7ffff9cf7ffffa2f7ffffaef7ffffb6f7ffff06f8ffff0ef8ffff16f8ffff0ef9ffff26f9ffffe0f9fffff0f9fffff4f9ffff46faffff4afaffff58faffff42fbffff26430000
+      m_ExpandedIDs: 84f9ffffa8faffff42fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -573,7 +573,7 @@ MonoBehaviour:
     m_CachedPref: -431
     m_ControlHash: 1412526313
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 20698
+  m_LastInspectedObjectInstanceID: 17512
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_LockTracker:
@@ -617,13 +617,13 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Areas/CONTROL
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Areas/CONTROL
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\camer\Farce! (A Platformer with sequences of Turn-Based
     Combat)
@@ -631,9 +631,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 26510000
-    m_LastClickedID: 20774
-    m_ExpandedIDs: 00000000324400003444000036440000384400003a440000f24e000000ca9a3b
+    m_SelectedIDs: 44440000
+    m_LastClickedID: 17476
+    m_ExpandedIDs: 00000000324400003444000036440000384400003a4400003e44000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -688,7 +688,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c2430000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

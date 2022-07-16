@@ -34,10 +34,11 @@ public class Commissioner : MonoBehaviour
     private int selection = -1;
     private bool down = true;
 
-    private bool cphase;
+    private bool cphase, udnames=false;
 
 
     private FARCE ptarget, etarget;
+    private List<FARCE> combatants = new List<FARCE>(), pmembers = new List<FARCE>(), emembers = new List<FARCE>();
 
     // Start is called before the first frame update
     void disableButtons()
@@ -81,9 +82,20 @@ public class Commissioner : MonoBehaviour
 
     IEnumerator pturn(FARCE farce)
     {
-        pinfo[0].GetComponent<Text>().text = farce.name;
-        pinfo[1].GetComponent<Text>().text = oobc.gw.getClassName(farce.pclass);
-        pinfo[2].GetComponent<Text>().text = farce.level.ToString();
+        ptarget = farce;
+
+        farce.eval_effects();
+        if (farce.stats_tmp[0] == 0)
+        {
+            int tmp = pmembers.IndexOf(farce);
+            if(pmembers.Count - 1 != 0)
+            {
+                ptarget = pmembers[(tmp + 1) % pmembers.Count];
+            }
+            combatants.Remove(farce);
+            pmembers.Remove(farce);
+            yield break;
+        }
 
         string[] button_titles = new string[6];
 
@@ -157,7 +169,7 @@ public class Commissioner : MonoBehaviour
 
         cphase = false;
 
-        do //ITEM PHASE
+        do //ACTION PHASE
         {
             //What do?
             //USE
@@ -197,6 +209,24 @@ public class Commissioner : MonoBehaviour
                 int[] weapon_effect = oobc.gw.getWeaponEffects(farce.weapon_id, 0);
 
                 etarget.apply_effect(weapon_effect[0], weapon_effect[1], weapon_effect[2], weapon_effect[3]);
+                if (etarget.stats_tmp[0] == 0)
+                {
+                    int tmp = emembers.IndexOf(etarget);
+                    if (emembers.Count - 1 != 0)
+                    {
+                        FARCE ftp;
+                        ftp = emembers[(tmp + 1) % emembers.Count];
+                        combatants.Remove(etarget);
+                        emembers.Remove(etarget);
+                        etarget = ftp;
+                    } else
+                    {
+                        combatants.Remove(farce);
+                        pmembers.Remove(farce);
+                        yield break;
+                    }
+
+                }
             }
 
             cphase = true;
@@ -207,28 +237,42 @@ public class Commissioner : MonoBehaviour
 
     IEnumerator eturn(FARCE farce)
     {
+
+        etarget = farce;
+        farce.eval_effects();
+        if(farce.stats_tmp[0] == 0)
+        {
+            int tmp = emembers.IndexOf(farce);
+            if (emembers.Count - 1 != 0)
+            {
+                etarget = emembers[(tmp + 1) % emembers.Count];
+            }
+            combatants.Remove(farce);
+            emembers.Remove(farce);
+            yield break;
+        }
         //"literally the same as pturn but rng based on opponent AI type: flailing (pure rng), ...
         yield return StartCoroutine(printetdelay(new string[] { farce.name + "ly actions", "CP: " + farce.stats_tmp[0].ToString() }, 5f));
         yield return null;
     }
 
 
+
     IEnumerator fightLoop()
     {
 
         //generate opponents, fauna in bushes, otherwise people of specified classes (not enchanter) 
-        FARCE[] combatants = { new FARCE(oobc.gw, "", 0f, 1, 10), oobc.party[0], oobc.party[1], oobc.party[2] };
+        pmembers.AddRange(oobc.party);
+        emembers.AddRange(new FARCE[] { new FARCE(oobc.gw, "", 0f, 1, 10), new FARCE(oobc.gw, "", 0f, 1, 10) });
+
+        combatants.AddRange(emembers);
+        combatants.AddRange(pmembers);
 
         ptarget = oobc.party[oobc.getLeader()];
         etarget = combatants[0];
 
-        pinfo[0].GetComponent<Text>().text = ptarget.name;
-        pinfo[1].GetComponent<Text>().text = oobc.gw.getClassName(ptarget.pclass);
-        pinfo[2].GetComponent<Text>().text = ptarget.level.ToString();
+        udnames = true;
 
-        tinfo[0].GetComponent<Text>().text = etarget.name;
-        tinfo[1].GetComponent<Text>().text = oobc.gw.getClassName(etarget.pclass);
-        tinfo[2].GetComponent<Text>().text = etarget.level.ToString();
 
         if (oobc.opportunity == true)
         {
@@ -237,15 +281,31 @@ public class Commissioner : MonoBehaviour
 
         while (down)
         {
-            foreach (FARCE combatant in combatants)
+            for(int i = 0; i < combatants.Count; i++)
             {
-                if (Array.Exists(oobc.party, member => member == combatant)) {
-                    yield return StartCoroutine(pturn(combatant));
-                } else yield return StartCoroutine(eturn(combatant));
+                if (Array.Exists(oobc.party, member => member == combatants[i])) {
+                    yield return StartCoroutine(pturn(combatants[i]));
+                } else {
+                    yield return StartCoroutine(eturn(combatants[i]));
+                }
+
+                if(pmembers.Count == 0 || emembers.Count == 0)
+                {
+                    down = false;
+                    break;
+                }
             }
         }
 
+        if(pmembers.Count == 0)
+        {
+            yield return StartCoroutine(printetdelay(new string[] { "Opponent(s) Win[s]" }, 3f));
+        }
 
+        if(emembers.Count == 0)
+        {
+            yield return StartCoroutine(printetdelay(new string[] { "Player Wins" }, 3f));
+        }
 
         oobc.complete = true;
     }
@@ -359,5 +419,32 @@ public class Commissioner : MonoBehaviour
             audios.clip = marches[i];
             audios.Play();
         }
+
+        if (udnames) {
+            pinfo[0].GetComponent<Text>().text = ptarget.name;
+            pinfo[1].GetComponent<Text>().text = oobc.gw.getClassName(ptarget.pclass);
+            pinfo[2].GetComponent<Text>().text = ptarget.level.ToString();
+
+            for (int i = 0; i < 5; i++) // attributes
+            {
+                attrs[i].GetComponent<Text>().text = ptarget.attrs_tmp[i].ToString();
+            }
+
+            for (int i = 0; i < 3; i ++) // attributes
+            {
+                Mstats[2 * i].GetComponent<Text>().text = (ptarget.stats_tmp[i] / 3).ToString();
+                Mstats[2 * i + 1].GetComponent<Text>().text = (ptarget.stats_tmp[i] % 3).ToString();
+            }
+
+            mStats[0].GetComponent<Text>().text = ptarget.stats_tmp[3].ToString();
+            mStats[1].GetComponent<Text>().text = ptarget.stats_tmp[4].ToString();
+
+            tinfo[0].GetComponent<Text>().text = etarget.name;
+            tinfo[1].GetComponent<Text>().text = oobc.gw.getClassName(etarget.pclass);
+            tinfo[2].GetComponent<Text>().text = etarget.level.ToString();
+
+
+        }
+
     }
 }
