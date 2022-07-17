@@ -138,6 +138,19 @@ namespace FARCEUtils
             skilz_lvl = gw.getClassSkills(cls);
             attrs_lvl = gw.getClassAttrs(cls);
 
+            for(int i = 0; i < attrs_lvl.Length; i++)
+            {
+                attrs_lvl[i] += UnityEngine.Random.Range(2, 5);
+            }
+
+            for (int i = 0; i < stats_lvl.Length; i++)
+            {
+                stats_lvl[i] += UnityEngine.Random.Range(2, 5);
+            }
+
+            stats_lvl[0] += attrs_lvl[0] / 3 + attrs_lvl[0] / 5;
+            stats_lvl[1] += attrs_lvl[0] / 3 + attrs_lvl[1] / 5;
+            stats_lvl[2] += attrs_lvl[0] / 3 + attrs_lvl[2] / 5;
 
             stats_tmp = stats_lvl;
             attrs_tmp = attrs_lvl;

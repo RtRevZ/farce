@@ -222,7 +222,7 @@ public class Commissioner : MonoBehaviour
                     } else
                     {
                         combatants.Remove(etarget);
-                        pmembers.Remove(etarget);
+                        emembers.Remove(etarget);
                         yield break;
                     }
 
