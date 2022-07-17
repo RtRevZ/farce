@@ -357,7 +357,7 @@ public class Commissioner : MonoBehaviour
 
             cphase = true;
         } while (!cphase);
-        disableButtons(0);
+        disableButtons();
         //Duplicate Item & action phases with conditions and prob
     }
 

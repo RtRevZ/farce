@@ -12,6 +12,7 @@ TagManager:
   - tp_door
   - button
   - switch
+  - npc
   layers:
   - Default
   - TransparentFX

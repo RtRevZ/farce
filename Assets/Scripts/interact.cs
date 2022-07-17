@@ -27,6 +27,10 @@ public class interact : MonoBehaviour //rename to use
         {
             abs_load(collider);
         }
+        if (collider.gameObject.tag == "npc" && Input.GetButtonDown("Use"))
+        {
+            StartCoroutine(collider.gameObject.GetComponent<NPC>().npcSay());
+        }
         if (collider.gameObject.tag == "switch" && Input.GetButtonDown("Use"))
         {
             collider.gameObject.GetComponent<BS>().Toggle();
