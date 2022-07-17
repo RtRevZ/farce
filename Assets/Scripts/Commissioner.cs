@@ -169,6 +169,8 @@ public class Commissioner : MonoBehaviour
 
         cphase = false;
 
+        bb.reset();
+
         do //ACTION PHASE
         {
             //What do?
@@ -208,6 +210,15 @@ public class Commissioner : MonoBehaviour
             {
                 int[] weapon_effect = oobc.gw.getWeaponEffects(farce.weapon_id, 0);
 
+                if (farce.stats_tmp[1] < 1)
+                {
+                    bb.reset();
+                    yield return StartCoroutine(printetdelay(new string[] { "Not Enough Stamina" }, 3f));
+                    continue;
+                }
+
+                farce.stats_tmp[1] -= 1;
+
                 etarget.apply_effect(weapon_effect[0], weapon_effect[1], weapon_effect[2], weapon_effect[3]);
                 if (etarget.stats_tmp[0] == 0)
                 {
@@ -229,9 +240,124 @@ public class Commissioner : MonoBehaviour
                 }
             }
 
+            if (selection == 2)
+            {
+                switch (oobc.gw.getClassSpecial(farce.pclass)) {
+                    case 0:
+                        button_titles[0] = "Dual Strike";
+                        button_titles[1] = "Two Handed";
+
+                        manyprint(new string[] { "What kind?", "", "Dual Strike", "Two Handed"});
+
+                        enableAndName(2, button_titles);
+
+                        int[] weapon_effect = oobc.gw.getWeaponEffects(farce.weapon_id, 0);
+
+                        selection = -1;
+
+                        while (selection == -1)
+                        {
+                            yield return null;
+                        }
+
+                        if (selection == -2)
+                        {
+                            break;
+                        }// break to check
+                        if (selection == -3)
+                        {
+                            yield break;
+                        }// abruptly end turn coroutine on pass
+                        if (selection == -4)
+                        {
+                            continue; //go back to top of turn
+                        }
+
+                        if (selection == 0)
+                        {
+                            if(farce.stats_tmp[1] < 2)
+                            {
+                                bb.reset();
+                                yield return StartCoroutine(printetdelay(new string[] { "Not Enough Stamina" }, 3f));
+                                continue;
+                            }
+                            if (farce.stats_tmp[2] < 1)
+                            {
+                                bb.reset();
+                                yield return StartCoroutine(printetdelay(new string[] { "Not Enough Power" }, 3f));
+                                continue;
+                            }
+
+                            farce.stats_tmp[1] -= 2;
+                            farce.stats_tmp[2] -= 1;
+
+                            weapon_effect[2] *= UnityEngine.Random.Range(0, 3); 
+                        }
+
+                        if (selection == 1)
+                        {
+                            if (farce.stats_tmp[1] < 3)
+                            {
+                                bb.reset();
+                                yield return StartCoroutine(printetdelay(new string[] { "Not Enough Stamina" }, 3f));
+                                continue;
+                            }
+                            if (farce.stats_tmp[2] < 2)
+                            {
+                                bb.reset();
+                                yield return StartCoroutine(printetdelay(new string[] { "Not Enough Power" }, 3f));
+                                continue;
+                            }
+
+                            farce.stats_tmp[1] -= 3;
+                            farce.stats_tmp[2] -= 2;
+
+                            weapon_effect[2] *= 2;
+                        }
+
+                        etarget.apply_effect(weapon_effect[0], weapon_effect[1], weapon_effect[2], weapon_effect[3]);
+                        if (etarget.stats_tmp[0] == 0)
+                        {
+                            int tmp = emembers.IndexOf(etarget);
+                            if (emembers.Count - 1 != 0)
+                            {
+                                FARCE ftp;
+                                ftp = emembers[(tmp + 1) % emembers.Count];
+                                combatants.Remove(etarget);
+                                emembers.Remove(etarget);
+                                etarget = ftp;
+                            }
+                            else
+                            {
+                                combatants.Remove(etarget);
+                                emembers.Remove(etarget);
+                                yield break;
+                            }
+
+                        }
+                        break;
+                    case 1:
+
+                        break;
+                    case 3:
+
+                        break;
+                    case 4:
+
+                        break;
+                    case 5:
+
+                        break;
+                    case 6:
+
+                        break;
+
+                }
+            }
+
             cphase = true;
         } while (!cphase);
-
+        disableButtons(0);
         //Duplicate Item & action phases with conditions and prob
     }
 
