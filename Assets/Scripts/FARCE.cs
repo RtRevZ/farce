@@ -80,6 +80,11 @@ namespace FARCEUtils
             return new int[] {ieffect[1], ieffect[0], amt, ieffect[2]};
         }
 
+        public string getWeaponName(int i)
+        {
+            return tsvreader(weapons, i, 0);
+        }
+
         public GameWarden()
         {
             fauna = File.ReadAllLines(Application.dataPath + "/StreamingAssets/fauna.txt");
@@ -114,6 +119,7 @@ namespace FARCEUtils
         public int boxact, mw = 0, rank = 0;
 
         public int weapon_id = 0;
+        public int[] weapons = new int[6];
 
         public FARCE(GameWarden gw, string n, float spd, int lvl, int cls)
         {
@@ -125,6 +131,7 @@ namespace FARCEUtils
                 stats_lvl = gw.getFaunaStats(lvl);
                 stats_tmp = stats_lvl;
                 pclass = cls;
+                weapons[0] = 1;
                 return;
             }
 
@@ -154,6 +161,8 @@ namespace FARCEUtils
 
             stats_tmp = stats_lvl;
             attrs_tmp = attrs_lvl;
+
+            weapons[0] = 1;
 
             level = lvl;
             pclass = cls;

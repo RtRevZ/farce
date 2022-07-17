@@ -137,12 +137,11 @@ public class Commissioner : MonoBehaviour
             //UNEQUIP
 
             button_titles[0] = "USE";
-            button_titles[1] = "EQUIP";
-            button_titles[2] = "UNEQUIP";
+            button_titles[1] = "UN/EQUIP";
 
-            manyprint(new string[] { "What will " + farce.name.Split(' ')[0] + " do?", "", "USE a consumable item,", "EQUIP an item,", "or, UNEQUIP an item" });
+            manyprint(new string[] { "What will " + farce.name.Split(' ')[0] + " do?", "", "USE a consumable item,", "or, UN/EQUIP an item" });
 
-            enableAndName(3, button_titles);
+            enableAndName(2, button_titles);
 
             selection = -1;
 
@@ -163,6 +162,68 @@ public class Commissioner : MonoBehaviour
             {
                 continue; //go back to top of turn
             }
+
+            if (selection == 0)
+            {
+                //use
+            }
+
+            if (selection == 1)
+            {
+                if(farce.weapon_id != 0) //unequip
+                {
+                    yield return StartCoroutine(printetdelay(new string[] { "Unequipped " + oobc.gw.getWeaponName(farce.weapons[farce.weapon_id]) }, 3f));
+                    farce.weapon_id = 0;
+                }
+                else if(farce.weapons[0] != 0) //equip if there are weapons
+                {
+                    bb.reset();
+                    bb.add_line("");
+                    int tmp = 0;
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (farce.weapons[i] == 0)
+                        {
+                            tmp = i;
+                            break;
+                        }
+
+                        bb.add_line((i + 1).ToString() + ": " + oobc.gw.getWeaponName(farce.weapons[i]));
+                        button_titles[i] = (i + 1).ToString();
+                    }
+
+                    enableAndName(tmp, button_titles);
+
+                    selection = -1;
+
+                    while (selection == -1)
+                    {
+                        yield return null;
+                    }
+
+                    if (selection == -2)
+                    {
+                        break;
+                    }// break to check
+                    if (selection == -3)
+                    {
+                        yield break;
+                    }// abruptly end turn coroutine on pass
+                    if (selection == -4)
+                    {
+                        continue; //go back to top of turn
+                    }
+
+                    yield return StartCoroutine(printetdelay(new string[] { "Equipped " + oobc.gw.getWeaponName(farce.weapons[selection]) }, 3f));
+                    farce.weapon_id = farce.weapons[selection];
+                }
+                else
+                {
+                    yield return StartCoroutine(printetdelay(new string[] { "No Weapons to Equip." }, 3f));
+                    continue;
+                }
+            }
+
 
             cphase = true;
         } while (!cphase);
