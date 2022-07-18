@@ -86,23 +86,23 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1540}
+      Script: {instanceID: 1538}
     - Class: 114
-      Script: {instanceID: 1720}
+      Script: {instanceID: 1718}
     - Class: 114
-      Script: {instanceID: 1844}
+      Script: {instanceID: 1842}
     - Class: 114
-      Script: {instanceID: 2232}
+      Script: {instanceID: 2230}
     - Class: 114
-      Script: {instanceID: 2650}
+      Script: {instanceID: 2648}
     - Class: 114
-      Script: {instanceID: 2814}
+      Script: {instanceID: 2812}
     - Class: 114
-      Script: {instanceID: 3032}
+      Script: {instanceID: 3030}
     - Class: 114
-      Script: {instanceID: 3276}
+      Script: {instanceID: 3274}
     - Class: 114
-      Script: {instanceID: 3290}
+      Script: {instanceID: 3288}
     - Class: 114
       Script: {instanceID: 3390}
     - Class: 114
@@ -155,15 +155,15 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1512}
+      Script: {instanceID: 1510}
     - Class: 114
-      Script: {instanceID: 2232}
+      Script: {instanceID: 2230}
     - Class: 114
-      Script: {instanceID: 2506}
+      Script: {instanceID: 2504}
     - Class: 114
-      Script: {instanceID: 2650}
+      Script: {instanceID: 2648}
     - Class: 114
-      Script: {instanceID: 3032}
+      Script: {instanceID: 3030}
     - Class: 114
       Script: {instanceID: 3430}
     - Class: 114
@@ -239,23 +239,23 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1540}
+      Script: {instanceID: 1538}
     - Class: 114
-      Script: {instanceID: 1844}
+      Script: {instanceID: 1842}
     - Class: 114
-      Script: {instanceID: 2224}
+      Script: {instanceID: 2222}
     - Class: 114
-      Script: {instanceID: 2232}
+      Script: {instanceID: 2230}
     - Class: 114
-      Script: {instanceID: 2650}
+      Script: {instanceID: 2648}
     - Class: 114
-      Script: {instanceID: 2750}
+      Script: {instanceID: 2748}
     - Class: 114
-      Script: {instanceID: 2814}
+      Script: {instanceID: 2812}
     - Class: 114
-      Script: {instanceID: 3032}
+      Script: {instanceID: 3030}
     - Class: 114
-      Script: {instanceID: 3276}
+      Script: {instanceID: 3274}
     - Class: 114
       Script: {instanceID: 3390}
     - Class: 114
@@ -298,25 +298,25 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1688}
+      Script: {instanceID: 1686}
     - Class: 114
-      Script: {instanceID: 1844}
+      Script: {instanceID: 1842}
     - Class: 114
-      Script: {instanceID: 2472}
+      Script: {instanceID: 2470}
     - Class: 114
-      Script: {instanceID: 2650}
+      Script: {instanceID: 2648}
     - Class: 114
-      Script: {instanceID: 2814}
+      Script: {instanceID: 2812}
     - Class: 114
-      Script: {instanceID: 2862}
+      Script: {instanceID: 2860}
     - Class: 114
-      Script: {instanceID: 3032}
+      Script: {instanceID: 3030}
     - Class: 114
-      Script: {instanceID: 3276}
+      Script: {instanceID: 3274}
+    - Class: 114
+      Script: {instanceID: 3320}
     - Class: 114
       Script: {instanceID: 4410}
-    - Class: 114
-      Script: {instanceID: 27642}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -353,9 +353,9 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 2814}
+      Script: {instanceID: 2812}
     - Class: 114
-      Script: {instanceID: 3276}
+      Script: {instanceID: 3274}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -651,6 +651,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: MarkerTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 1f0a0929a6f30eab38cbf198e98d7393
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: NPC
   - hash:
       serializedVersion: 2
       Hash: 8e6ceabfd38a184413d69b7db56c89cc
@@ -969,12 +975,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
-  - hash:
-      serializedVersion: 2
-      Hash: 1f0a0929a6f30eab38cbf198e98d7393
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: NPC
   platform: 19
   scenePathNames:
   - Assets/Areas/CONTROL/menu.unity
