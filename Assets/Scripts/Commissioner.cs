@@ -165,7 +165,98 @@ public class Commissioner : MonoBehaviour
 
             if (selection == 0)
             {
-                //use
+                button_titles[0] = "FOOD/DRINK";
+                button_titles[1] = "POTIONS";
+
+                manyprint(new string[] { "Eat, Drink, etc.", "Potions" });
+
+                enableAndName(2, button_titles);
+
+                selection = -1;
+
+                while (selection == -1)
+                {
+                    yield return null;
+                }
+
+                if (selection == -2)
+                {
+                    break;
+                }// break to check
+                if (selection == -3)
+                {
+                    yield break;
+                }// abruptly end turn coroutine on pass
+                if (selection == -4)
+                {
+                    continue; //go back to top of turn
+                }
+                if (selection == 0)
+                {
+                    int i = 0;
+                    int[] buttonmap = new int[6];
+                    foreach(Tuple<int, int> cons in farce.picnicBasket)
+                    {
+                        if(cons == null)
+                        {
+                            continue;
+                        }
+                        buttonmap[i++] = Array.IndexOf(farce.picnicBasket, cons);
+                    }
+
+                    if(i == 0)
+                    {
+                        yield return StartCoroutine(printetdelay(new string[] { "Nothing in the Picnic Basket" }, 3f));
+                        continue;
+                    }
+
+                    bb.reset();
+                    bb.add_line("What to have?");
+
+                    for (int j = 0; j < i; j++)
+                    {
+                        Debug.Log(buttonmap[j]);
+                        bb.add_line((j + 1).ToString() + ": " + oobc.gw.getConsumableName(farce.picnicBasket[buttonmap[j]].Item1) + " Quan. " + farce.picnicBasket[buttonmap[j]].Item2);
+                        button_titles[j] = (j + 1).ToString();
+                    }
+
+                    enableAndName(i, button_titles);
+
+                    selection = -1;
+
+                    while (selection == -1)
+                    {
+                        yield return null;
+                    }
+
+                    if (selection == -2)
+                    {
+                        break;
+                    }// break to check
+                    if (selection == -3)
+                    {
+                        yield break;
+                    }// abruptly end turn coroutine on pass
+                    if (selection == -4)
+                    {
+                        continue; //go back to top of turn
+                    }
+
+                    Tuple<List<int[]>, int> effects = oobc.gw.getConsumableEffects(farce.picnicBasket[buttonmap[selection]].Item1);
+                    foreach (int[] effect in effects.Item1)
+                    {
+                        farce.apply_effect(effect[1], effect[0], effects.Item2, effect[2]);
+                    }
+
+                    yield return StartCoroutine(printetdelay(new string[] { "Consumed " + oobc.gw.getConsumableName(farce.picnicBasket[buttonmap[selection]].Item1) }, 3f));
+
+                    farce.picnicBasket[buttonmap[selection]] = new Tuple<int,int>(farce.picnicBasket[buttonmap[selection]].Item1, farce.picnicBasket[buttonmap[selection]].Item2 - 1);
+
+                    if (farce.picnicBasket[buttonmap[selection]].Item2 == 0)
+                    {
+                        farce.picnicBasket[buttonmap[selection]] = null;
+                    }
+                }
             }
 
             if (selection == 1)
@@ -178,7 +269,7 @@ public class Commissioner : MonoBehaviour
                 else if(farce.weapons[0] != 0) //equip if there are weapons
                 {
                     bb.reset();
-                    bb.add_line("");
+                    bb.add_line("Equip What?");
                     int tmp = 0;
                     for (int i = 0; i < 6; i++)
                     {

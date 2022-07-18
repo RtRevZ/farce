@@ -1,4 +1,6 @@
 using System.IO;
+using System.Collections;
+using System.Collections.Generic;
 using System;
 using UnityEngine;
 
@@ -10,6 +12,7 @@ namespace FARCEUtils
         // Start is called before the first frame update
         string[] fauna;
         string[] classes;
+        string[] consumables;
         string[] weapons;
 
         string tsvreader(string[] lit, int ent, int i)
@@ -85,11 +88,29 @@ namespace FARCEUtils
             return tsvreader(weapons, i, 0);
         }
 
+        public string getConsumableName(int i)
+        {
+            return tsvreader(consumables, i, 0);
+        }
+
+        public Tuple<List<int[]>, int> getConsumableEffects(int i)
+        {
+            List<int[]> list= new List<int[]>();
+
+            foreach(string arr in tsvreader(consumables, i, 2).Split(';'))
+            {
+                list.Add(Array.ConvertAll(arr.Split(','), int.Parse));
+            }
+
+            return new Tuple<List<int[]>, int>(list, int.Parse(tsvreader(consumables, i, 1)));
+        }
+
         public GameWarden()
         {
             fauna = File.ReadAllLines(Application.dataPath + "/StreamingAssets/fauna.txt");
             classes = File.ReadAllLines(Application.dataPath + "/StreamingAssets/classes.txt");
             weapons = File.ReadAllLines(Application.dataPath + "/StreamingAssets/weapons.txt");
+            consumables = File.ReadAllLines(Application.dataPath + "/StreamingAssets/consumables.txt");
         }
 
 
@@ -115,6 +136,8 @@ namespace FARCEUtils
         public int[,] effects = new int[3,10]; //effects 0 - type, 1 - amount, 2 - turns 
 
         public float speed, wt;
+
+        public Tuple<int, int>[] picnicBasket = new Tuple<int, int>[6];     //Tuple cons_id, quant
 
         public int boxact, mw = 0, rank = 0;
 
@@ -164,8 +187,14 @@ namespace FARCEUtils
 
             weapons[0] = 1;
 
+            picnicBasket[0] = new Tuple<int, int>(1, 5);
+            picnicBasket[1] = new Tuple<int, int>(3, 5);
+            picnicBasket[2] = new Tuple<int, int>(5, 5);
+
             level = lvl;
             pclass = cls;
+
+            rank = 1;
         }
 
         private void lvlup()

@@ -1,0 +1,7 @@
+Meat Broth	2	1,5,2
+Meat Stew	2	1,5,4
+Cheese Sandwich	3	1,5,3;1,8,2
+Meat Sandwich	3	1,5,3;1,9,2
+Meat and Cheese Sandwich	3	1,5,4;1,6,3
+Goulash	4	1,5,4;1,7,3
+Burgoo	5	1,5,5;1,6,4;1,7,3
