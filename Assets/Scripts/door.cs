@@ -123,6 +123,8 @@ public class door : MonoBehaviour
     {
         string str = "", str2 = "";
 
+        if (BS.Length == 0) return;
+
         for (int i = 0; i < vals.Length; i++)
         {
             if (BS[vals[i]].GetComponent<BS>().state ^ neg[i])
