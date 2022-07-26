@@ -257,6 +257,7 @@ public class Commissioner : MonoBehaviour
                         farce.picnicBasket[buttonmap[selection]] = null;
                     }
                 }
+                break;
             }
 
             if (selection == 1)
@@ -307,6 +308,7 @@ public class Commissioner : MonoBehaviour
 
                     yield return StartCoroutine(printetdelay(new string[] { "Equipped " + oobc.gw.getWeaponName(farce.weapons[selection]) }, 3f));
                     farce.weapon_id = farce.weapons[selection];
+                    break;
                 }
                 else
                 {
@@ -390,6 +392,8 @@ public class Commissioner : MonoBehaviour
                     }
 
                 }
+
+                break;
             }
 
             if (selection == 2)
@@ -505,6 +509,8 @@ public class Commissioner : MonoBehaviour
                         break;
 
                 }
+
+                break;
             }
 
             cphase = true;

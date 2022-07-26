@@ -20,6 +20,7 @@ public class door : MonoBehaviour
         {
             locked = true;
         }
+        else return;
 
         ops = new bool[BS.Length];
         neg = new bool[BS.Length];
